@@ -1,6 +1,6 @@
-# Here you'll find notes that I write down as I brainstorm on the app and its feature set
+# 🙇🏽 Brainstorming Notes
 
-According to the video, the colors should be categorized as follows for apps:
+According to the [video](https://material.google.com/style/color.html#), the colors should be categorized as follows for apps:
 500 - dominant colors, toolbars
 700 - status bar
 300 - secondary information
