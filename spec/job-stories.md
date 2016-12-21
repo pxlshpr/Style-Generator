@@ -1,7 +1,7 @@
-# UI Features
+# Job Stories
 ## [VC01] Primary Color Selection
 
-| Feature | Description |
+| Story | Description |
 | --- | --- |
-| VC01F01 | Feature |
+| VC01F01 | There should be  |
 | VC01F02 | Feature |
