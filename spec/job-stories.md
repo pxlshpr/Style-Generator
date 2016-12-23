@@ -11,3 +11,19 @@
 | 6 | When I tap on one of the primary colors, the chosen color’s text should take on the associated text value for that color, so that it is clearly visible over the color |
 | 7 | When I have already chosen a primary color and tap on it again, the UI should return to its initial state, so that I have a way of seeing the initial colors again |
 | 8 | When I have already chosen a primary color and tap on another one, the UI should change similarly to when I had initially chosen that primary color, so that I am able to switch colors without reseting the UI |
+| 9 | When this view controller loads, the Next button should be disabled, so that I can’t proceed without first selecting a primary color |
+| 10 | When I tap one of the primary colors, the Next button should be enabled again, so that I have the option of proceeding to the next screen |
+| 11 | When I have already chosen a primary color and deslect it, the Next button should become disabled again, so that I am not able to proceed with no primary color selected |
+
+## [VC02] Accent Color Selection
+
+| 1 | When this view controller loads, it should have one collection view, so that so that it can display the accent colors to pick from |
+| 2 | When I tap on one of the accent colors, every color but the one selected should be greyed out, so that I can clearly see what that color would look like against the primary color |
+| 3 | When I tap on one of the accent colors, the labels for each of the colors should appear (including the selected one), so that I can tell which color is which when selecting a new one |
+| 4 | When I tap on one of the accent colors, the chosen color’s text should take on the associated text value for that color, so that it is clearly visible over the color |
+| 5 | When I have already chosen an accent color and tap on it again, the UI should return to its initial state, so that I have a way of seeing the initial colors again |
+| 6 | When this view controller loads, the Next button should be disabled (with the 800 of the primary color), so that I can’t proceed without first selecting an accent color |
+| 7 | When I tap one of the accent colors, the Next button should be enabled again, so that I have the option of proceeding to the next screen |
+| 11 | When I have already chosen an accent color and deslect it, the Next button should become disabled again, so that I am not able to proceed with no accent color selected |
+| 12 | When I have already chosen an accent color and tap the Back button, the selected color should be saved and reselected when I come back to this view |
+
