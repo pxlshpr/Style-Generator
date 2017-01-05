@@ -80,14 +80,14 @@ extension PrimaryColorViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func cellFor(materialColor: MaterialColor) -> UICollectionViewCell {
+    private func cellFor(materialColor: MaterialColorStruct) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
 }
 
 class MaterialColorCell: UICollectionViewCell {
     
-    var color: MaterialColor = MaterialColor.red {
+    var color: MaterialColorStruct = MaterialColorStruct.red {
         didSet {
             self.backgroundColor = UIColor(hexString: color.hex)
         }

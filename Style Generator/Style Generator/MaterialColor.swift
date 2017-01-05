@@ -1,5 +1,5 @@
 //
-//  MaterialColor.swift
+//  MaterialColorStruct.swift
 //  Style Generator
 //
 //  Created by Ahmed Khalaf on 2/1/17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct MaterialColor {
+struct MaterialColorStruct {
     var name: String
     var hex: String
     var barStyle: UIBarStyle
@@ -24,7 +24,7 @@ struct MaterialColor {
         self.barStyle = barStyle
     }
     
-    static var red = MaterialColor(name: "Red", hex: "#F44336")
+    static var red = MaterialColorStruct(name: "Red", hex: "#F44336")
 }
 
 class MaterialColor2: UIColor {
@@ -34,23 +34,23 @@ class MaterialColor2: UIColor {
 }
 
 let MaterialColors = [
-    MaterialColor(name: "Red", hex: "#F44336"),
-    MaterialColor(name: "Pink", hex: "#E91E63"),
-    MaterialColor(name: "Purple", hex: "#9C27B0"),
-    MaterialColor(name: "Deep Purple", hex: "#673AB7"),
-    MaterialColor(name: "Indigo", hex: "#3F51B5"),
-    MaterialColor(name: "Blue", hex: "#2196F3"),
-    MaterialColor(name: "Light Blue", hex: "#03A9F4"),
-    MaterialColor(name: "Cyan", hex: "#00BCD4"),
-    MaterialColor(name: "Teal", hex: "#009688"),
-    MaterialColor(name: "Green", hex: "#4CAF50"),
-    MaterialColor(name: "Light Green", hex: "#8BC34A"),
-    MaterialColor(name: "Lime", hex: "#CDDC39"),
-    MaterialColor(name: "Yellow", hex: "#FFEB3B", barStyle: .default),
-    MaterialColor(name: "Amber", hex: "#FFC107"),
-    MaterialColor(name: "Orange", hex: "#FF9800"),
-    MaterialColor(name: "Deep Orange", hex: "#FF5722"),
-    MaterialColor(name: "Brown", hex: "#795548"),
-    MaterialColor(name: "Grey", hex: "#9E9E9E"),
-    MaterialColor(name: "Blue Grey", hex: "#607D8B")
+    MaterialColorStruct(name: "Red", hex: "#F44336"),
+    MaterialColorStruct(name: "Pink", hex: "#E91E63"),
+    MaterialColorStruct(name: "Purple", hex: "#9C27B0"),
+    MaterialColorStruct(name: "Deep Purple", hex: "#673AB7"),
+    MaterialColorStruct(name: "Indigo", hex: "#3F51B5"),
+    MaterialColorStruct(name: "Blue", hex: "#2196F3"),
+    MaterialColorStruct(name: "Light Blue", hex: "#03A9F4"),
+    MaterialColorStruct(name: "Cyan", hex: "#00BCD4"),
+    MaterialColorStruct(name: "Teal", hex: "#009688"),
+    MaterialColorStruct(name: "Green", hex: "#4CAF50"),
+    MaterialColorStruct(name: "Light Green", hex: "#8BC34A"),
+    MaterialColorStruct(name: "Lime", hex: "#CDDC39"),
+    MaterialColorStruct(name: "Yellow", hex: "#FFEB3B", barStyle: .default),
+    MaterialColorStruct(name: "Amber", hex: "#FFC107"),
+    MaterialColorStruct(name: "Orange", hex: "#FF9800"),
+    MaterialColorStruct(name: "Deep Orange", hex: "#FF5722"),
+    MaterialColorStruct(name: "Brown", hex: "#795548"),
+    MaterialColorStruct(name: "Grey", hex: "#9E9E9E"),
+    MaterialColorStruct(name: "Blue Grey", hex: "#607D8B")
 ]
