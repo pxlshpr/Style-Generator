@@ -1,0 +1,10 @@
+framework module Toolbelt {
+  umbrella header "Toolbelt.h"
+
+  export *
+  module * { export * }
+}
+
+module Toolbelt.Swift {
+    header "Toolbelt-Swift.h"
+}

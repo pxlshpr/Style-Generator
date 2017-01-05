@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2D3CE021E00CE0F00C77F10"
-               BuildableName = "Style Generator.app"
-               BlueprintName = "Style Generator"
-               ReferencedContainer = "container:Style Generator.xcodeproj">
+               BlueprintIdentifier = "E2516D9A1E1401710026FAA8"
+               BuildableName = "Toolbelt.framework"
+               BlueprintName = "Toolbelt"
+               ReferencedContainer = "container:Toolbelt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,30 +33,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2D3CE161E00CE0F00C77F10"
-               BuildableName = "Style GeneratorTests.xctest"
-               BlueprintName = "Style GeneratorTests"
-               ReferencedContainer = "container:Style Generator.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2D3CE211E00CE0F00C77F10"
-               BuildableName = "Style GeneratorUITests.xctest"
-               BlueprintName = "Style GeneratorUITests"
-               ReferencedContainer = "container:Style Generator.xcodeproj">
+               BlueprintIdentifier = "E2516DA31E1401710026FAA8"
+               BuildableName = "ToolbeltTests.xctest"
+               BlueprintName = "ToolbeltTests"
+               ReferencedContainer = "container:Toolbelt.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2D3CE021E00CE0F00C77F10"
-            BuildableName = "Style Generator.app"
-            BlueprintName = "Style Generator"
-            ReferencedContainer = "container:Style Generator.xcodeproj">
+            BlueprintIdentifier = "E2516D9A1E1401710026FAA8"
+            BuildableName = "Toolbelt.framework"
+            BlueprintName = "Toolbelt"
+            ReferencedContainer = "container:Toolbelt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -72,16 +62,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2D3CE021E00CE0F00C77F10"
-            BuildableName = "Style Generator.app"
-            BlueprintName = "Style Generator"
-            ReferencedContainer = "container:Style Generator.xcodeproj">
+            BlueprintIdentifier = "E2516D9A1E1401710026FAA8"
+            BuildableName = "Toolbelt.framework"
+            BlueprintName = "Toolbelt"
+            ReferencedContainer = "container:Toolbelt.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -91,16 +80,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2D3CE021E00CE0F00C77F10"
-            BuildableName = "Style Generator.app"
-            BlueprintName = "Style Generator"
-            ReferencedContainer = "container:Style Generator.xcodeproj">
+            BlueprintIdentifier = "E2516D9A1E1401710026FAA8"
+            BuildableName = "Toolbelt.framework"
+            BlueprintName = "Toolbelt"
+            ReferencedContainer = "container:Toolbelt.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

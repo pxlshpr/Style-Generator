@@ -1,0 +1,6 @@
+# .travis.yml
+osx_image: xcode8.2
+language: objective-c
+script: ./test
+after_success: 
+  - bash <(curl -s https://codecov.io/bash) -J 'Toolbelt'

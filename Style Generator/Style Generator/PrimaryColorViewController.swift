@@ -7,47 +7,12 @@
 //
 
 import UIKit
-
-struct MaterialColor {
-    var name: String
-    var hex: String
-    var barStyle: UIBarStyle
-    
-    init(name: String, hex: String) {
-        self.init(name: name, hex: hex, barStyle: .black)
-    }
-    
-    init(name: String, hex: String, barStyle: UIBarStyle) {
-        self.name = name
-        self.hex = hex
-        self.barStyle = barStyle
-    }
-}
-
-let MaterialColors = [
-    MaterialColor(name: "Red", hex: "#F44336"),
-    MaterialColor(name: "Pink", hex: "#E91E63"),
-    MaterialColor(name: "Purple", hex: "#9C27B0"),
-    MaterialColor(name: "Deep Purple", hex: "#673AB7"),
-    MaterialColor(name: "Indigo", hex: "#3F51B5"),
-    MaterialColor(name: "Blue", hex: "#2196F3"),
-    MaterialColor(name: "Light Blue", hex: "#03A9F4"),
-    MaterialColor(name: "Cyan", hex: "#00BCD4"),
-    MaterialColor(name: "Teal", hex: "#009688"),
-    MaterialColor(name: "Green", hex: "#4CAF50"),
-    MaterialColor(name: "Light Green", hex: "#8BC34A"),
-    MaterialColor(name: "Lime", hex: "#CDDC39"),
-    MaterialColor(name: "Yellow", hex: "#FFEB3B", barStyle: .default),
-    MaterialColor(name: "Amber", hex: "#FFC107"),
-    MaterialColor(name: "Orange", hex: "#FF9800"),
-    MaterialColor(name: "Deep Orange", hex: "#FF5722"),
-    MaterialColor(name: "Brown", hex: "#795548"),
-    MaterialColor(name: "Grey", hex: "#9E9E9E"),
-    MaterialColor(name: "Blue Grey", hex: "#607D8B")
-]
+import Toolbelt
 
 class PrimaryColorViewController: UIViewController {
 
+    // MARK: Lazy Properties
+    
     lazy var nextButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(tappedNext))
         button.isEnabled = false
@@ -55,12 +20,16 @@ class PrimaryColorViewController: UIViewController {
     }()
     
     lazy var layout: UICollectionViewLayout = {
-        var itemSize = self.view.frame.width / 3.0
-        itemSize -= 14
         
+        //TODO: remove constants
+
         let layout = UICollectionViewFlowLayout()
+        
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+
+        let width = 122.0
+        print(width)
+        layout.itemSize = CGSize(width: width, height: width)
         return layout
     }()
     
@@ -68,11 +37,13 @@ class PrimaryColorViewController: UIViewController {
         let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(MaterialColorCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
     
+    // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,12 +53,14 @@ class PrimaryColorViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
+    // MARK: Actions
+    
     func tappedNext() {
         
     }
-
 }
 
+// MARK: - UICollectionViewDataSource
 extension PrimaryColorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -96,18 +69,32 @@ extension PrimaryColorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MaterialColorCell
         
         guard indexPath.row < MaterialColors.count else {
             return cell
         }
         
-        let materialColor = MaterialColors[indexPath.row]
-        cell.backgroundColor = UIColor(hexString: materialColor.hex)
+        let color = MaterialColors[indexPath.row]
+        cell.color = color
         return cell
+    }
+    
+    private func cellFor(materialColor: MaterialColor) -> UICollectionViewCell {
+        return UICollectionViewCell()
     }
 }
 
+class MaterialColorCell: UICollectionViewCell {
+    
+    var color: MaterialColor = MaterialColor.red {
+        didSet {
+            self.backgroundColor = UIColor(hexString: color.hex)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
 extension PrimaryColorViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -135,28 +122,5 @@ extension PrimaryColorViewController: UICollectionViewDelegate {
         }
         
         nextButton.isEnabled = true
-    }
-}
-
-
-
-
-extension UIColor {
-    convenience init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt32()
-        Scanner(string: hex).scanHexInt32(&int)
-        let a, r, g, b: UInt32
-        switch hex.characters.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
