@@ -87,7 +87,7 @@ extension PrimaryColorViewController: UICollectionViewDataSource {
 
 class MaterialColorCell: UICollectionViewCell {
     
-    var color: MaterialColorStruct = MaterialColorStruct.red {
+    var color: MaterialColorStruct = MaterialColorStruct(name: "Red", hex: "#F44336") {
         didSet {
             self.backgroundColor = UIColor(hexString: color.hex)
         }

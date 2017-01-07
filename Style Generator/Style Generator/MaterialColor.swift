@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-struct MaterialColorStruct {
-    var name: String
-    var hex: String
-    var barStyle: UIBarStyle
+struct MaterialColor {
+    var name: String = "White"
+    var hex: String = "FFFFFF"
+    var barStyle: UIBarStyle = .black
+    var uiColor: UIColor = UIColor.white
     
     init(name: String, hex: String) {
         self.init(name: name, hex: hex, barStyle: .black)
-    }
+    }
     
     init(name: String, hex: String, barStyle: UIBarStyle) {
         self.name = name
@@ -24,13 +25,7 @@ struct MaterialColorStruct {
         self.barStyle = barStyle
     }
     
-    static var red = MaterialColorStruct(name: "Red", hex: "#F44336")
-}
-
-class MaterialColor2: UIColor {
-    var name: String = ""
-    var hex: String = ""
-
+    static var red = MaterialColor(name: "Red", hex: "#F44336")
 }
 
 let MaterialColors = [
