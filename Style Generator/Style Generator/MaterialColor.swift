@@ -1,16 +1,28 @@
 import UIKit
 
-struct MaterialColor {
+protocol Color: Equatable {
+    var name: String { get }
+    var uiColor: UIColor { get }
+    var barStyle: UIBarStyle { get }
+}
+
+func ==<T: Color>(lhs: T, rhs: T) -> Bool {
+    return lhs.name == rhs.name &&
+        rhs.uiColor == lhs.uiColor &&
+        lhs.barStyle == rhs.barStyle
+}
+
+struct MaterialColor: Color {
     var name: String
-    var hex: String
     var barStyle: UIBarStyle
-    
     var uiColor: UIColor {
         get {
             return UIColor(hexString: hex)
         }
     }
-    
+
+    var hex: String
+
     init(name: String, hex: String) {
         self.init(name: name, hex: hex, barStyle: .black)
     }

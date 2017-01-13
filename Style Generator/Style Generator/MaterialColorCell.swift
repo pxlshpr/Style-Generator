@@ -1,6 +1,6 @@
 import UIKit
 
-class MaterialColorCell: UICollectionViewCell {
+class ColorCell: UICollectionViewCell {
     
     enum State {
         case initial

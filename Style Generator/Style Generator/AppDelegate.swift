@@ -18,9 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let primaryColorViewController = PrimaryColorViewController()
+        let primaryColorViewController = ColorViewController(colors: MaterialColor.primaryColors)
+        let colors = [MaterialColor.brown, MaterialColor.amber]
+        let secondaryColorViewController = ColorViewController(colors: colors)
         
-        let navigationViewController = UINavigationController(rootViewController: primaryColorViewController)
+        let navigationViewController = UINavigationController(rootViewController: secondaryColorViewController)
         
         self.window?.rootViewController = navigationViewController
         self.window?.makeKeyAndVisible()
