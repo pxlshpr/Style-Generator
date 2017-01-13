@@ -1,12 +1,3 @@
-//
-//  MaterialColor.swift
-//  Style Generator
-//
-//  Created by Ahmed Khalaf on 2/1/17.
-//  Copyright © 2017 Ahmed Khalaf. All rights reserved.
-//
-
-import Foundation
 import UIKit
 
 struct MaterialColor {
@@ -40,10 +31,10 @@ struct MaterialColor {
     static var cyan = MaterialColor(name: "Cyan", hex: "#00BCD4")
     static var teal = MaterialColor(name: "Teal", hex: "#009688")
     static var green = MaterialColor(name: "Green", hex: "#4CAF50")
-    static var lightGreen = MaterialColor(name: "Light Green", hex: "#8BC34A")
-    static var lime = MaterialColor(name: "Lime", hex: "#CDDC39")
+    static var lightGreen = MaterialColor(name: "Light Green", hex: "#8BC34A", barStyle: .default)
+    static var lime = MaterialColor(name: "Lime", hex: "#CDDC39", barStyle: .default)
     static var yellow = MaterialColor(name: "Yellow", hex: "#FFEB3B", barStyle: .default)
-    static var amber = MaterialColor(name: "Amber", hex: "#FFC107")
+    static var amber = MaterialColor(name: "Amber", hex: "#FFC107", barStyle: .default)
     static var orange = MaterialColor(name: "Orange", hex: "#FF9800")
     static var deepOrange = MaterialColor(name: "Deep Orange", hex: "#FF5722")
     static var brown = MaterialColor(name: "Brown", hex: "#795548")
