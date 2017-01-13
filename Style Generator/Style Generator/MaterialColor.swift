@@ -1,5 +1,5 @@
 //
-//  MaterialColorStruct.swift
+//  MaterialColor.swift
 //  Style Generator
 //
 //  Created by Ahmed Khalaf on 2/1/17.
@@ -10,14 +10,19 @@ import Foundation
 import UIKit
 
 struct MaterialColor {
-    var name: String = "White"
-    var hex: String = "FFFFFF"
-    var barStyle: UIBarStyle = .black
-    var uiColor: UIColor = UIColor.white
+    var name: String
+    var hex: String
+    var barStyle: UIBarStyle
+    
+    var uiColor: UIColor {
+        get {
+            return UIColor(hexString: hex)
+        }
+    }
     
     init(name: String, hex: String) {
         self.init(name: name, hex: hex, barStyle: .black)
-    }
+    }
     
     init(name: String, hex: String, barStyle: UIBarStyle) {
         self.name = name
@@ -26,26 +31,46 @@ struct MaterialColor {
     }
     
     static var red = MaterialColor(name: "Red", hex: "#F44336")
+    static var pink = MaterialColor(name: "Pink", hex: "#E91E63")
+    static var purple = MaterialColor(name: "Purple", hex: "#9C27B0")
+    static var deepPurple = MaterialColor(name: "Deep Purple", hex: "#673AB7")
+    static var indigo = MaterialColor(name: "Indigo", hex: "#3F51B5")
+    static var blue = MaterialColor(name: "Blue", hex: "#2196F3")
+    static var lightBlue = MaterialColor(name: "Light Blue", hex: "#03A9F4")
+    static var cyan = MaterialColor(name: "Cyan", hex: "#00BCD4")
+    static var teal = MaterialColor(name: "Teal", hex: "#009688")
+    static var green = MaterialColor(name: "Green", hex: "#4CAF50")
+    static var lightGreen = MaterialColor(name: "Light Green", hex: "#8BC34A")
+    static var lime = MaterialColor(name: "Lime", hex: "#CDDC39")
+    static var yellow = MaterialColor(name: "Yellow", hex: "#FFEB3B", barStyle: .default)
+    static var amber = MaterialColor(name: "Amber", hex: "#FFC107")
+    static var orange = MaterialColor(name: "Orange", hex: "#FF9800")
+    static var deepOrange = MaterialColor(name: "Deep Orange", hex: "#FF5722")
+    static var brown = MaterialColor(name: "Brown", hex: "#795548")
+    static var grey = MaterialColor(name: "Grey", hex: "#9E9E9E")
+    static var blueGrey = MaterialColor(name: "Blue Grey", hex: "#607D8B")
+    
+    static let primaryColors = [
+        MaterialColor.red,
+        MaterialColor.pink,
+        MaterialColor.purple,
+        MaterialColor.deepPurple,
+        MaterialColor.indigo,
+        MaterialColor.blue,
+        MaterialColor.lightBlue,
+        MaterialColor.cyan,
+        MaterialColor.teal,
+        MaterialColor.green,
+        MaterialColor.lightGreen,
+        MaterialColor.lime,
+        MaterialColor.yellow,
+        MaterialColor.amber,
+        MaterialColor.orange,
+        MaterialColor.deepOrange,
+        MaterialColor.brown,
+        MaterialColor.grey,
+        MaterialColor.blueGrey
+    ]
+
 }
 
-let MaterialColors = [
-    MaterialColorStruct(name: "Red", hex: "#F44336"),
-    MaterialColorStruct(name: "Pink", hex: "#E91E63"),
-    MaterialColorStruct(name: "Purple", hex: "#9C27B0"),
-    MaterialColorStruct(name: "Deep Purple", hex: "#673AB7"),
-    MaterialColorStruct(name: "Indigo", hex: "#3F51B5"),
-    MaterialColorStruct(name: "Blue", hex: "#2196F3"),
-    MaterialColorStruct(name: "Light Blue", hex: "#03A9F4"),
-    MaterialColorStruct(name: "Cyan", hex: "#00BCD4"),
-    MaterialColorStruct(name: "Teal", hex: "#009688"),
-    MaterialColorStruct(name: "Green", hex: "#4CAF50"),
-    MaterialColorStruct(name: "Light Green", hex: "#8BC34A"),
-    MaterialColorStruct(name: "Lime", hex: "#CDDC39"),
-    MaterialColorStruct(name: "Yellow", hex: "#FFEB3B", barStyle: .default),
-    MaterialColorStruct(name: "Amber", hex: "#FFC107"),
-    MaterialColorStruct(name: "Orange", hex: "#FF9800"),
-    MaterialColorStruct(name: "Deep Orange", hex: "#FF5722"),
-    MaterialColorStruct(name: "Brown", hex: "#795548"),
-    MaterialColorStruct(name: "Grey", hex: "#9E9E9E"),
-    MaterialColorStruct(name: "Blue Grey", hex: "#607D8B")
-]

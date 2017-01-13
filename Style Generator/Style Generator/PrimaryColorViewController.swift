@@ -11,6 +11,11 @@ import Toolbelt
 
 class PrimaryColorViewController: UIViewController {
 
+    enum State {
+        case initial
+        case selected
+    }
+    
     // MARK: Lazy Properties
     
     lazy var nextButton: UIBarButtonItem = {
@@ -42,11 +47,21 @@ class PrimaryColorViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: Properties
+    
+    var state: State = .initial {
+        didSet {
+            
+        }
+    }
+    
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.state = .initial
+        
         navigationItem.title = "Primary Color"
         navigationItem.rightBarButtonItem = nextButton
         
@@ -64,32 +79,35 @@ class PrimaryColorViewController: UIViewController {
 extension PrimaryColorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return MaterialColors.count
+        return MaterialColor.primaryColors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MaterialColorCell
-        
-        guard indexPath.row < MaterialColors.count else {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? MaterialColorCell {
+            guard indexPath.row < MaterialColor.primaryColors.count else {
+                return cell
+            }
+            
+            let color = MaterialColor.primaryColors[indexPath.row]
+            cell.color = color
             return cell
+        } else {
+            //TODO: Throw error or something here, bring it to our attention!
+            return UICollectionViewCell()
         }
-        
-        let color = MaterialColors[indexPath.row]
-        cell.color = color
-        return cell
     }
     
-    private func cellFor(materialColor: MaterialColorStruct) -> UICollectionViewCell {
+    private func cellFor(materialColor: MaterialColor) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
 }
 
 class MaterialColorCell: UICollectionViewCell {
     
-    var color: MaterialColorStruct = MaterialColorStruct(name: "Red", hex: "#F44336") {
+    var color: MaterialColor = MaterialColor(name: "Red", hex: "#F44336") {
         didSet {
-            self.backgroundColor = UIColor(hexString: color.hex)
+            self.backgroundColor = color.uiColor
         }
     }
 }
@@ -99,28 +117,46 @@ extension PrimaryColorViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        guard indexPath.row < MaterialColors.count else {
+        guard indexPath.row < MaterialColor.primaryColors.count else {
             return
         }
         
-        let materialColor = MaterialColors[indexPath.row]
-        let selectedCell = collectionView.cellForItem(at: indexPath)
-
-        UIView.animate(withDuration: 0.5) {
-            self.navigationController?.navigationBar.barTintColor = UIColor(hexString: materialColor.hex)
-            self.navigationController?.navigationBar.barStyle = materialColor.barStyle
+        transition(from: .initial, to: .selected, fromSelectingIndexPath: indexPath)
+    }
+    
+    // MARK: Private functions
+    
+    private func transition(from fromState: State, to toState: State, fromSelectingIndexPath indexPath: IndexPath) {
+     
+        if let cell = collectionView.cellForItem(at: indexPath) as? MaterialColorCell {
+            let materialColor = MaterialColor.primaryColors[indexPath.row]
             
-            self.navigationController?.navigationBar.layoutIfNeeded()
-            self.setNeedsStatusBarAppearanceUpdate()
-
+            // case of .initial to .selected
+            UIView.animate(withDuration: 0.5) {
+                self.colorNavigationBar(withMaterialColor: materialColor)
+                self.colorVisibleCellsExcept(cell: cell)
+            }
+            nextButton.isEnabled = true
             
-            for cell in collectionView.visibleCells {
-                if cell != selectedCell {
-                    cell.backgroundColor = UIColor.lightGray
-                }
+            // case of .selected to .initial
+        }
+    }
+    
+    private func colorVisibleCellsExcept(cell: MaterialColorCell) {
+        for visibleCells in self.collectionView.visibleCells {
+            if visibleCells != cell {
+                //the cell's state should simply be set and everything else happens magically :)
+                visibleCells.backgroundColor = UIColor.lightGray
             }
         }
-        
-        nextButton.isEnabled = true
     }
+    
+    private func colorNavigationBar(withMaterialColor materialColor: MaterialColor) {
+        self.navigationController?.navigationBar.barTintColor = materialColor.uiColor
+        self.navigationController?.navigationBar.barStyle = materialColor.barStyle
+        
+        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
 }
