@@ -93,6 +93,10 @@ class ColorViewController: UIViewController {
     
     func tappedNext() {
         
+        let colors = [MaterialColor.brown, MaterialColor.amber]
+        let accentViewController = ColorViewController(colors: colors)
+        self.navigationController?.pushViewController(accentViewController, animated: true)
+        accentViewController.navigationController?.navigationBar.tintColor = self.nextButton.tintColor
     }
 }
 
