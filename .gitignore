@@ -76,6 +76,8 @@ fastlane/test_output
 # sh build.sh package-examples
 */Realm.framework
 Realm.framework
+*/RealmSwift.framework
+RealmSwift.framework
 
 /Realm/RLMPlatform.h
 
