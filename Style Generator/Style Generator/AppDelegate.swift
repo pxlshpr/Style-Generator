@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Style Generator
-//
-//  Created by Ahmed Khalaf on 14/12/16.
-//  Copyright © 2016 Ahmed Khalaf. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -18,8 +10,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let primaryColorViewController = ColorViewController(colors: MaterialColor.primaryColors)
-//        let colors = [MaterialColor.brown, MaterialColor.amber]
+        initiateBackend()
+        
+        let primaryColorViewController = ColorViewController(colors: MaterialColorStruct.primaryColors)
+//        let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
 //        let secondaryColorViewController = ColorViewController(colors: colors)
         
         let navigationViewController = UINavigationController(rootViewController: primaryColorViewController)

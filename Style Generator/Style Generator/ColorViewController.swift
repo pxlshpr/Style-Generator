@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Style Generator
-//
-//  Created by Ahmed Khalaf on 14/12/16.
-//  Copyright © 2016 Ahmed Khalaf. All rights reserved.
-//
-
 import UIKit
 import Toolbelt
 
@@ -59,7 +51,7 @@ class ColorViewController: UIViewController {
     
     var defaultNavigationBarTintColor: UIColor?
     
-    var colors: [MaterialColor]
+    var colors: [MaterialColorStruct]
 
     // MARK: View Lifecycle
 
@@ -68,7 +60,7 @@ class ColorViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(colors: [MaterialColor]) {
+    convenience init(colors: [MaterialColorStruct]) {
         self.init()
         self.colors = colors
     }
@@ -93,7 +85,7 @@ class ColorViewController: UIViewController {
     
     func tappedNext() {
         
-        let colors = [MaterialColor.brown, MaterialColor.amber]
+        let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
         let accentViewController = ColorViewController(colors: colors)
         self.navigationController?.pushViewController(accentViewController, animated: true)
         accentViewController.navigationController?.navigationBar.tintColor = self.nextButton.tintColor
@@ -196,7 +188,7 @@ extension ColorViewController: UICollectionViewDelegate {
 
     }
     
-    private func colorVisibleCellsExceptThatWithColor(color: MaterialColor) {
+    private func colorVisibleCellsExceptThatWithColor(color: MaterialColorStruct) {
         if let visibleCells = self.collectionView.visibleCells as? [ColorCell] {
             for visibleCell in visibleCells {
                 if let cellColor = visibleCell.color {
@@ -221,7 +213,7 @@ extension ColorViewController: UICollectionViewDelegate {
     }
 
     
-    private func colorNavigationBar(withColor color: MaterialColor?) {
+    private func colorNavigationBar(withColor color: MaterialColorStruct?) {
         if let controller = self.navigationController {
             if let color = color {
                 controller.navigationBar.barTintColor = color.uiColor

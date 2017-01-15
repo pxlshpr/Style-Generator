@@ -26,7 +26,7 @@ class ColorCell: UICollectionViewCell {
         }
     }
     
-    var color: MaterialColor?
+    var color: MaterialColorStruct?
     
     lazy var label: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
