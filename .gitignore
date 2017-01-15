@@ -65,3 +65,17 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+*.realm
+*.realm.lock
+
+# sh build.sh config
+/Realm/config.mk
+
+# sh build.sh ios-framework
+# sh build.sh package-examples
+*/Realm.framework
+Realm.framework
+
+/Realm/RLMPlatform.h
+
