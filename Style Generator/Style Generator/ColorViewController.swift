@@ -25,7 +25,7 @@ class ColorViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
 
         let width = 122.0
-        print("Hi from iPad 👋🏽")
+        print("Hi from Mac 💻")
         layout.itemSize = CGSize(width: width, height: width)
         return layout
     }()
