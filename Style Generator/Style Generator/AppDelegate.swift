@@ -10,7 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        initiateBackend()
+        deleteAllRealmData()
+        ColorObject.addMaterialColors()
         
         let primaryColorViewController = ColorViewController(colors: MaterialColorStruct.primaryColors)
 //        let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
