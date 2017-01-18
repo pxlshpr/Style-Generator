@@ -23,27 +23,28 @@ class ColorObject: Object {
     override static func primaryKey() -> String? {
         return "hex"
     }
-}
-
-func initiateBackend() {
     
-    // TODO: Get the realm browser and make sure we have it setup to observe our changes before running these! ACTUALLY, first read up on the options for browsing our Realm data and then take it from there
-    let red50 = ColorObject(value: ["ffebee", "Red", "50"])
-    let red100 = ColorObject(value: ["ffcdd2", "Red", "100"])
-    let red200 = ColorObject(value: ["ef9a9a", "Red", "200"])
-    let red300 = ColorObject(value: ["e57373", "Red", "300"])
+    func initiateBackend() {
     
-    red50.hues.append(objectsIn: [red100, red200, red300])
-    red100.hues.append(objectsIn: [red50, red200, red300])
-    red200.hues.append(objectsIn: [red50, red100, red300])
-    red300.hues.append(objectsIn: [red50, red100, red200])
+      // TODO: Get the realm browser and make sure we have it setup to observe our changes before running these! ACTUALLY, first read up on the options for browsing our Realm data and then take it from there
+      let red50 = ColorObject(value: ["ffebee", "Red", "50"])
+      let red100 = ColorObject(value: ["ffcdd2", "Red", "100"])
+      let red200 = ColorObject(value: ["ef9a9a", "Red", "200"])
+      let red300 = ColorObject(value: ["e57373", "Red", "300"])
     
-    let realm = try! Realm()
-    try! realm.write {
+      red50.hues.append(objectsIn: [red100, red200, red300])
+      red100.hues.append(objectsIn: [red50, red200, red300])
+      red200.hues.append(objectsIn: [red50, red100, red300])
+      red300.hues.append(objectsIn: [red50, red100, red200])
+    
+      let realm = try! Realm()
+      try! realm.write {
         realm.add(red50)
         realm.add(red100)
         realm.add(red200)
         realm.add(red300)
-    }
+      }
     
+  }
+
 }
