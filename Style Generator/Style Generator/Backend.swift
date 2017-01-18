@@ -27,19 +27,23 @@ class ColorObject: Object {
 
 func initiateBackend() {
     
-    //TODO: Fix these – just do a couple of colors for now to make sure its working first
-    let red50 = ColorObject(value: ["ffebee", "Red", ColorObject.MaterialColorHue.P50, [], []])
-    let red100 = ColorObject(value: ["ffcdd2", "Red", ColorObject.MaterialColorHue.P100, [], []])
-    let red200 = ColorObject(value: ["ef9a9a", "Red", ColorObject.MaterialColorHue.P200, [], []])
-    let red300 = ColorObject(value: ["e57373", "Red", ColorObject.MaterialColorHue.P300, [], []])
-    let red400 = ColorObject(value: ["ef5350", "Red", ColorObject.MaterialColorHue.P400, [], []])
-    let red500 = ColorObject(value: ["f44336", "Red", ColorObject.MaterialColorHue.P500, [], []])
-    let red600 = ColorObject(value: ["e53935", "Red", ColorObject.MaterialColorHue.P600, [], []])
-    let red700 = ColorObject(value: ["d32f2f", "Red", ColorObject.MaterialColorHue.P700, [], []])
-    let red800 = ColorObject(value: ["c62828", "Red", ColorObject.MaterialColorHue.P800, [], []])
-    let red900 = ColorObject(value: ["b71c1c", "Red", ColorObject.MaterialColorHue.P900, [], []])
-    let redA100 = ColorObject(value: ["ff8a80", "Red", ColorObject.MaterialColorHue.A100, [], []])
-    let redA200 = ColorObject(value: ["ff5252", "Red", ColorObject.MaterialColorHue.A200, [], []])
-    let redA400 = ColorObject(value: ["ff1744", "Red", ColorObject.MaterialColorHue.A400, [], []])
-    let redA700 = ColorObject(value: ["d50000", "Red", ColorObject.MaterialColorHue.A700, [], []])
+    // TODO: Get the realm browser and make sure we have it setup to observe our changes before running these! ACTUALLY, first read up on the options for browsing our Realm data and then take it from there
+    let red50 = ColorObject(value: ["ffebee", "Red", "50"])
+    let red100 = ColorObject(value: ["ffcdd2", "Red", "100"])
+    let red200 = ColorObject(value: ["ef9a9a", "Red", "200"])
+    let red300 = ColorObject(value: ["e57373", "Red", "300"])
+    
+    red50.hues.append(objectsIn: [red100, red200, red300])
+    red100.hues.append(objectsIn: [red50, red200, red300])
+    red200.hues.append(objectsIn: [red50, red100, red300])
+    red300.hues.append(objectsIn: [red50, red100, red200])
+    
+    let realm = try! Realm()
+    try! realm.write {
+        realm.add(red50)
+        realm.add(red100)
+        realm.add(red200)
+        realm.add(red300)
+    }
+    
 }
