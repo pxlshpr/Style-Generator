@@ -9,14 +9,16 @@ class ColorObject: Object {
     }
 
     dynamic var hex = ""
-    dynamic var materialColorName = ""
-    dynamic var materialColorHue = ""
     
-    dynamic var materialColorAccents : [ColorObject] = [] // array of MaterialColors that may be used as accents for this color
-    
+    dynamic var name: String?
+    dynamic var hue: String?
+
+	// array of MaterialColors that may be used as accents for this color    
+    let accents = List<ColorObject>()
+        
     //TODO: decide if we should have a stored array of relationships to other colors or if we should instead have a property of some sort that allows us to dynamically grab these from the realm we're in at any given time? what's possible? what's better?
-    
-    dynamic var materialColorHues: [ColorObject] = [] // array of Colors that are other hues of this same color. There may be accent colors, who knows. This is what we suspect would create a mangled web of relationships. Or something super elegant. Who knows? 🍁
+    // array of Colors that are other hues of this same color. There may be accent colors, who knows. This is what we suspect would create a mangled web of relationships. Or something super elegant. Who knows? 🍁
+    let hues = List<ColorObject>()
     
     override static func primaryKey() -> String? {
         return "hex"
@@ -25,6 +27,7 @@ class ColorObject: Object {
 
 func initiateBackend() {
     
+    //TODO: Fix these – just do a couple of colors for now to make sure its working first
     let red50 = ColorObject(value: ["ffebee", "Red", ColorObject.MaterialColorHue.P50, [], []])
     let red100 = ColorObject(value: ["ffcdd2", "Red", ColorObject.MaterialColorHue.P100, [], []])
     let red200 = ColorObject(value: ["ef9a9a", "Red", ColorObject.MaterialColorHue.P200, [], []])
