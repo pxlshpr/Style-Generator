@@ -3,6 +3,7 @@ import RealmSwift
 
 class ColorObject: Object {
     
+    //TODO: think of how can we store this in Realm in the most efficient way (maybe as a number) and have referred to with an associated enum value that we can use as a reference easily
     enum MaterialColorHue {
         case P500, P50, P100, P200, P300, P400, P600, P700, P800, P900
         case A100, A200, A400, A700
