@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import Toolbelt
 
 //TODO: decide where we'll be putting these as a general rule
 let insertionCompletedNotification = Notification.Name(rawValue:"InsertionCompletedNotification")

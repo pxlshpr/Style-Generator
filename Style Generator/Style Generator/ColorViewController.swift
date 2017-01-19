@@ -83,7 +83,7 @@ class ColorViewController: UIViewController {
         
         view.addSubview(collectionView)
         
-        NotificationCenter.default.addobserver(forName: insertionCompletedNotification, object: nil, queue: nil, using: catchInsertionCompletedNotification)
+        NotificationCenter.default.addObserver(forName: insertionCompletedNotification, object: nil, queue: nil, using: catchInsertionCompletedNotification)
     }
     
     deinit {
