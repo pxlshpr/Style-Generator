@@ -25,7 +25,6 @@ class ColorViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
 
         let width = 122.0
-        print("Hi from Mac 💻")
         layout.itemSize = CGSize(width: width, height: width)
         return layout
     }()
@@ -51,17 +50,21 @@ class ColorViewController: UIViewController {
     
     var defaultNavigationBarTintColor: UIColor?
     
+    //TODO: make this observe for a 'new data' notification from Realm and update itself accordingly – subsequently reloading the collectionView in a non-obstructive way. It's default should indicate to the collectinView that it is still awaiting data insertion – and we need to decide how we'll display this to the user, if at all.
     var colors: [MaterialColorStruct]
 
     // MARK: View Lifecycle
 
     init() {
+        //TODO: we might not need this anymore
         self.colors = []
         super.init(nibName: nil, bundle: nil)
     }
     
     convenience init(colors: [MaterialColorStruct]) {
         self.init()
+        
+        //TODO: this concept of initiaiting the color View controller with an array of color structs needs to go. We need a way of conveying that we want 
         self.colors = colors
     }
     
@@ -96,12 +99,14 @@ class ColorViewController: UIViewController {
 extension ColorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // TODO: if we've got the go from Realm, return the list of primary material colors, else loading state so 0 or 1
         return colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ColorCell {
+        
             guard indexPath.row < colors.count else {
                 return cell
             }

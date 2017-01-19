@@ -17,7 +17,6 @@ class ColorObject: Object {
     let accents = List<ColorObject>()
         
     //TODO: decide if we should have a stored array of relationships to other colors or if we should instead have a property of some sort that allows us to dynamically grab these from the realm we're in at any given time? what's possible? what's better?
-    // array of Colors that are other hues of this same color. There may be accent colors, who knows. This is what we suspect would create a mangled web of relationships. Or something super elegant. Who knows? 🍁
     let hues = List<ColorObject>()
     
     override static func primaryKey() -> String? {
@@ -25,10 +24,11 @@ class ColorObject: Object {
     }
     
     class func addMaterialColors() {
-    
-        //TODO: cleanup (remove) the extra returns
+
+        //TODO: now use the data in Realm to load collection views    
+        //TODO: cleanup (remove) the extra returns in arrays and have a multidimensional array of our data to derive from
+        print(Date().timeIntervalSince1970())
         
-        //TODO: now use the data in Realm to load collection views
         addColor(withName: "Red", hexes: ["FFEBEE", "FFCDD2", "EF9A9A", "E57373", "EF5350", "F44336", "E53935", "D32F2F", "C62828", "B71C1C", "FF8A80", "FF5252", "FF1744", "D50000"])
         addColor(withName: "Pink", hexes: ["FCE4EC", "F8BBD0", "F48FB1", "F06292", "EC407A", "E91E63", "D81B60", "C2185B", "AD1457", "880E4F", "FF80AB", "FF4081", "F50057", "C51162"])
         addColor(withName: "Purple", hexes: ["F3E5F5", "E1BEE7", "CE93D8", "BA68C8", "AB47BC", "9C27B0", "8E24AA", "7B1FA2", "6A1B9A", "4A148C", "EA80FC", "E040FB", "D500F9", "AA00FF"])
@@ -231,6 +231,8 @@ class ColorObject: Object {
                                                 "455A64",
                                                 "37474F",
                                                 "263238"])
+        print(Date().timeIntervalSince1970())
+        
     }
     
     class func addColor(withName name: String, hexes: [String]) {

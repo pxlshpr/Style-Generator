@@ -12,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         deleteAllRealmData()
         ColorObject.addMaterialColors()
+        //TODO: have a notification for when the Realm data actually does get added so that we can reload at that point 
         
         let primaryColorViewController = ColorViewController(colors: MaterialColorStruct.primaryColors)
 //        let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
