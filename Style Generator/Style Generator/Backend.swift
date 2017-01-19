@@ -13,8 +13,18 @@ class ColorObject: Object {
     
     private dynamic var privateHue: String?    
     var hue: MaterialDesignHue? {
-      get { return MaterialDesignHue(rawValue: privateHue) }
-      set { privateHue = newValue.rawValue }
+        get {
+            if let unwrapped = privateHue {
+                return MaterialDesignHue(rawValue: unwrapped)
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let unwrapped = newValue {
+                privateHue = unwrapped.rawValue
+            }
+        }
     }
 
 	// array of MaterialColors that may be used as accents for this color    
