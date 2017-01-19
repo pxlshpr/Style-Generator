@@ -3,15 +3,19 @@ import RealmSwift
 
 class ColorObject: Object {
     
-    enum MaterialColorHue {
+    enum MaterialDesignHue: String {
         case P500, P50, P100, P200, P300, P400, P600, P700, P800, P900
         case A100, A200, A400, A700
     }
 
     dynamic var hex = ""
-    
     dynamic var name: String?
-    dynamic var hue: String?
+    
+    private dynamic var privateHue: String?    
+    var hue: MaterialDesignHue? {
+      get { return MaterialDesignHue(rawValue: privateHue) }
+      set { privateHue = newValue.rawValue }
+    }
 
 	// array of MaterialColors that may be used as accents for this color    
     let accents = List<ColorObject>()
