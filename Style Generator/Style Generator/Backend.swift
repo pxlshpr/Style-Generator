@@ -29,9 +29,8 @@ class ColorObject: Object {
     
     class func addMaterialColors() {
 
-        //TODO: now use the data in Realm to load collection views    
+        //TODO: now use the data in Realm to load collection views
         //TODO: cleanup (remove) the extra returns in arrays and have a multidimensional array of our data to derive from
-        print(Date().timeIntervalSince1970())
         
         addColor(withName: "Red", hexes: ["FFEBEE", "FFCDD2", "EF9A9A", "E57373", "EF5350", "F44336", "E53935", "D32F2F", "C62828", "B71C1C", "FF8A80", "FF5252", "FF1744", "D50000"])
         addColor(withName: "Pink", hexes: ["FCE4EC", "F8BBD0", "F48FB1", "F06292", "EC407A", "E91E63", "D81B60", "C2185B", "AD1457", "880E4F", "FF80AB", "FF4081", "F50057", "C51162"])
@@ -235,7 +234,7 @@ class ColorObject: Object {
                                                 "455A64",
                                                 "37474F",
                                                 "263238"])
-        print(Date().timeIntervalSince1970())
+        //TODO: Now send out a notification that informs the collectionViewControllers of the insertion being completion and to update their local properties (derived from the inserted data) and reload their collectionViews") – as it does take ~150ms for this to happen, and that's on the simulator.
         
     }
     

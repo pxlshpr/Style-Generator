@@ -88,6 +88,7 @@ class ColorViewController: UIViewController {
     
     func tappedNext() {
         
+        //TODO: replace this with the real thing
         let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
         let accentViewController = ColorViewController(colors: colors)
         self.navigationController?.pushViewController(accentViewController, animated: true)
@@ -105,8 +106,10 @@ extension ColorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        //TODO: Reusable Identifier needs to be a constant, maybe supplied by the ColorCell itself? I dunoo.
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ColorCell {
         
+            //TODO: can we assume that this won't be called assuming we have 0 for the number of cells and can simply proceed as if we have the primaries loaded – in which case we still need to edit how we access it. Or maybe leave it as it is, and just have colors load on its own.
             guard indexPath.row < colors.count else {
                 return cell
             }
@@ -136,6 +139,7 @@ extension ColorViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        //TODO: just like when returning a cell, can we assume that actually selecting a cell meant that we selected one with an indexPath? so we just proceed as if the colors have been loaded form the backend
         guard indexPath.row < colors.count else {
             return
         }
@@ -164,6 +168,9 @@ extension ColorViewController: UICollectionViewDelegate {
     
     private func transition(from fromState: State, to toState: State, fromSelectingIndexPath indexPath: IndexPath) {
 
+        //TODO: rethink grabbing the color *again* from the array. Maybe we should have either:
+        //      1. passed that in here instead and looked up the indexPath when needed, but does that mean looking up the indexPath is less expensive?
+        //      2. passed in *both* the indexPath *and* the color object itself, so that we don't have to worry about selecting it? what's wrong with doing it like this? is an excess of parameters more *expensive* in this context?
         let color = colors[indexPath.row]
         
         switch toState {
