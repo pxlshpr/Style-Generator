@@ -4,8 +4,7 @@ import RealmSwift
 class ColorObject: Object {
     
     enum MaterialDesignHue: String {
-        case P500, P50, P100, P200, P300, P400, P600, P700, P800, P900
-        case A100, A200, A400, A700
+        case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700
     }
 
     dynamic var hex = ""
@@ -13,18 +12,8 @@ class ColorObject: Object {
     
     private dynamic var privateHue: String?    
     var hue: MaterialDesignHue? {
-        get {
-            if let unwrapped = privateHue {
-                return MaterialDesignHue(rawValue: unwrapped)
-            } else {
-                return nil
-            }
-        }
-        set {
-            if let unwrapped = newValue {
-                privateHue = unwrapped.rawValue
-            }
-        }
+        get { return privateHue != nil ? MaterialDesignHue(rawValue: privateHue!) : nil }
+        set { if let unwrapped = newValue { privateHue = unwrapped.rawValue } }
     }
 
 	// array of MaterialColors that may be used as accents for this color    
@@ -250,30 +239,18 @@ class ColorObject: Object {
     
     class func addColor(withName name: String, hexes: [String]) {
         
-        guard hexes.count == 14 || hexes.count == 10 else {
-            print("Hexes count invalid")
-            return
-        }
-        
-        let color50 = ColorObject(value: [hexes[0], name, "50", [], []])
-        let color100 = ColorObject(value: [hexes[1], name, "100", [], []])
-        let color200 = ColorObject(value: [hexes[2], name, "200", [], []])
-        let color300 = ColorObject(value: [hexes[3], name, "300", [], []])
-        let color400 = ColorObject(value: [hexes[4], name, "400", [], []])
-        let color500 = ColorObject(value: [hexes[5], name, "500", [], []])
-        let color600 = ColorObject(value: [hexes[6], name, "600", [], []])
-        let color700 = ColorObject(value: [hexes[7], name, "700", [], []])
-        let color800 = ColorObject(value: [hexes[8], name, "800", [], []])
-        let color900 = ColorObject(value: [hexes[9], name, "900", [], []])
-        let colors: [ColorObject]
-        if hexes.count == 14 {
-            let colorA100 = ColorObject(value: [hexes[10], name, "A100", [], []])
-            let colorA200 = ColorObject(value: [hexes[11], name, "A200", [], []])
-            let colorA400 = ColorObject(value: [hexes[12], name, "A400", [], []])
-            let colorA700 = ColorObject(value: [hexes[13], name, "A700", [], []])
-            colors = [color50, color100, color200, color300, color400, color500, color600, color700, color800, color900, colorA100, colorA200, colorA400, colorA700]
-        } else {
-            colors = [color50, color100, color200, color300, color400, color500, color600, color700, color800, color900]
+        var index = 0
+        var colors = [ColorObject]()
+        for hue in iterateEnum(MaterialDesignHue.self) {
+            guard index < hexes.count else {
+                break
+            }
+            
+            let color = ColorObject()
+            color.hex = hexes[index]
+            color.hue = hue
+            index += 1
+            colors.append(color)
         }
         
         for color in colors {
@@ -283,6 +260,49 @@ class ColorObject: Object {
                 realm.add(color)
             }
         }
+
+        
+//        let color50 = ColorObject(value: [hexes[0], name, "50", [], []])
+//        let color100 = ColorObject(value: [hexes[1], name, "100", [], []])
+//        let color200 = ColorObject(value: [hexes[2], name, "200", [], []])
+//        let color300 = ColorObject(value: [hexes[3], name, "300", [], []])
+//        let color400 = ColorObject(value: [hexes[4], name, "400", [], []])
+//        let color500 = ColorObject(value: [hexes[5], name, "500", [], []])
+//        let color600 = ColorObject(value: [hexes[6], name, "600", [], []])
+//        let color700 = ColorObject(value: [hexes[7], name, "700", [], []])
+//        let color800 = ColorObject(value: [hexes[8], name, "800", [], []])
+//        let color900 = ColorObject(value: [hexes[9], name, "900", [], []])
+////        let colors: [ColorObject]
+//        if hexes.count == 14 {
+//            let colorA100 = ColorObject(value: [hexes[10], name, "A100", [], []])
+//            let colorA200 = ColorObject(value: [hexes[11], name, "A200", [], []])
+//            let colorA400 = ColorObject(value: [hexes[12], name, "A400", [], []])
+//            let colorA700 = ColorObject(value: [hexes[13], name, "A700", [], []])
+//            colors = [color50, color100, color200, color300, color400, color500, color600, color700, color800, color900, colorA100, colorA200, colorA400, colorA700]
+//        } else {
+//            colors = [color50, color100, color200, color300, color400, color500, color600, color700, color800, color900]
+//        }
+//        
+//        for color in colors {
+//            let realm = try! Realm()
+//            try! realm.write {
+//                color.hues.append(objectsIn: colors.filter { $0 != color })
+//                realm.add(color)
+//            }
+//        }
+    }
+}
+
+//http://stackoverflow.com/questions/24007461/how-to-enumerate-an-enum-with-string-type
+func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
+    var i = 0
+    return AnyIterator {
+        let next = withUnsafePointer(to: &i) {
+            $0.withMemoryRebound(to: T.self, capacity: 1) { $0.pointee }
+        }
+        if next.hashValue != i { return nil }
+        i += 1
+        return next
     }
 }
 
