@@ -82,7 +82,20 @@ class ColorViewController: UIViewController {
         defaultNavigationBarTintColor = self.navigationController?.navigationBar.barTintColor
         
         view.addSubview(collectionView)
+        
+        NotificationCenter.default.addobserver(forName: insertionCompletedNotification, object: nil, queue: nil, using: catchInsertionCompletedNotification)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    //TODO: fix the indentation issues, consolidate tabs-vs-spaces over iPad and Mac
+    //TODO: move this to another section
+   func catchInsertionCompletedNotification(notification: Notification) -> Void {
+    //TODO: maybe update our local variable here. Make PrimaryViewCVontroller a subclass or inherit the protocl of the general ColorViewController so that it has the basic displaying logic with a bit of extra stuff for grabbing the speccific data from Realm
+    //TODO: this should implicitly cause the collectionView to reload as discussed earlier
+   }
     
     // MARK: Actions
     
