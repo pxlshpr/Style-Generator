@@ -74,10 +74,10 @@ fastlane/test_output
 
 # sh build.sh ios-framework
 # sh build.sh package-examples
-*/Realm.framework
-Realm.framework
-*/RealmSwift.framework
-RealmSwift.framework
+#*/Realm.framework
+#Realm.framework
+#*/RealmSwift.framework
+#RealmSwift.framework
 
-/Realm/RLMPlatform.h
+#/Realm/RLMPlatform.h
 
