@@ -2,5 +2,7 @@
 osx_image: xcode8.2
 language: objective-c
 script: ./test
+before_install:
+  - chmod +x test
 after_failure: 
   - bash <(curl -s https://codecov.io/bash) -J 'style-generator'
