@@ -30,16 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //TODO: Move this to Toolbelt
     private func prepopulateRealm() {
-        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
-        let bundleRealmPath = Bundle.main.url(forResource: "prepopulated-data", withExtension: "realm")
-        
-        if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
-            } catch let error {
-                print("error copying prepopulated data: \(error)")
-            }
-        }
+//        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+//        let bundleRealmPath = Bundle.main.url(forResource: "prepopulated-data", withExtension: "realm")
+//        
+//        if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
+//            do {
+//                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+//            } catch let error {
+//                print("error copying prepopulated data: \(error)")
+//            }
+//        }
     }
 }
 
