@@ -18,6 +18,7 @@
 		E28FF1631E174BBD00320D29 /* Toolbelt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E28FF1671E174C0B00320D29 /* Toolbelt.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E28FF1661E174C0B00320D29 /* Toolbelt.framework.dSYM */; };
 		E2D2CFFB1E335AAF000CC274 /* ColorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2CFFA1E335AAF000CC274 /* ColorViewControllerTests.swift */; };
+		E2D2CFFD1E335E43000CC274 /* ColorViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2CFFC1E335E43000CC274 /* ColorViewControllerUITests.swift */; };
 		E2D3CE071E00CE0F00C77F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D3CE061E00CE0F00C77F10 /* AppDelegate.swift */; };
 		E2D3CE091E00CE0F00C77F10 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D3CE081E00CE0F00C77F10 /* ColorViewController.swift */; };
 		E2D3CE0E1E00CE0F00C77F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2D3CE0D1E00CE0F00C77F10 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		E28FF1661E174C0B00320D29 /* Toolbelt.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Toolbelt.framework.dSYM; path = Carthage/Build/iOS/Toolbelt.framework.dSYM; sourceTree = "<group>"; };
 		E2B096891E13806600B415DA /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E2D2CFFA1E335AAF000CC274 /* ColorViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewControllerTests.swift; sourceTree = "<group>"; };
+		E2D2CFFC1E335E43000CC274 /* ColorViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewControllerUITests.swift; sourceTree = "<group>"; };
 		E2D3CE031E00CE0F00C77F10 /* Style Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Style Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D3CE061E00CE0F00C77F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2D3CE081E00CE0F00C77F10 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				E2D3CE281E00CE0F00C77F10 /* Info.plist */,
+				E2D2CFFC1E335E43000CC274 /* ColorViewControllerUITests.swift */,
 			);
 			path = "Style GeneratorUITests";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 					E2D3CE211E00CE0F00C77F10 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 3EQ4PU3P2V;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = E2D3CE021E00CE0F00C77F10;
 					};
@@ -358,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2D2CFFD1E335E43000CC274 /* ColorViewControllerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,11 +561,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
 				INFOPLIST_FILE = "Style GeneratorUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pxlshpr.Style-GeneratorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Style Generator";
 			};
@@ -570,6 +577,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
 				INFOPLIST_FILE = "Style GeneratorUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
