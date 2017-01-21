@@ -1,6 +1,6 @@
 # .travis.yml
 osx_image: xcode8.2
 language: objective-c
-script: ./Style\ Generator/test
+script: ./test
 after_failure: 
   - bash <(curl -s https://codecov.io/bash) -J 'style-generator'
