@@ -4,6 +4,7 @@ protocol CollectionViewControllerTestCase {
 
   //TODO: think about grouping these – why would we want them separate? maybe to remind the implementor of the different things to test for? either way, be awre of how the collectionViewControllers will be created during each setup process. Maybe we can avoid that by having a lazy variable instead? Yeah that's probably what you want either way. So.
   
+  // Delete this (:
   // TODO: in this test file and all others, move any heavy test setup code into lazy variables! 
   func testThatNoCellsAreNil()
   func testThatCellCountIsCorrect()
