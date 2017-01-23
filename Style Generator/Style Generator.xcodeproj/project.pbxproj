@@ -16,6 +16,7 @@
 		E24946C71E3356E500A2D47B /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E24946C31E3356E500A2D47B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E260CFFA1E359219009C7204 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; };
 		E260CFFB1E359219009C7204 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; };
+		E27B4AF61E35E19A00B785F2 /* po.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B4AF51E35E19A00B785F2 /* po.swift */; };
 		E28FF1621E174BBD00320D29 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; };
 		E28FF1631E174BBD00320D29 /* Toolbelt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E28FF1671E174C0B00320D29 /* Toolbelt.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E28FF1661E174C0B00320D29 /* Toolbelt.framework.dSYM */; };
@@ -76,6 +77,7 @@
 		E246DEB81E1A4984008B1272 /* MaterialColorStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialColorStruct.swift; sourceTree = "<group>"; };
 		E24946C21E3356E500A2D47B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		E24946C31E3356E500A2D47B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		E27B4AF51E35E19A00B785F2 /* po.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = po.swift; sourceTree = "<group>"; };
 		E28FF1611E174BBD00320D29 /* Toolbelt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Toolbelt.framework; path = Carthage/Build/iOS/Toolbelt.framework; sourceTree = "<group>"; };
 		E28FF1661E174C0B00320D29 /* Toolbelt.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Toolbelt.framework.dSYM; path = Carthage/Build/iOS/Toolbelt.framework.dSYM; sourceTree = "<group>"; };
 		E2B096891E13806600B415DA /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				E2D3CE281E00CE0F00C77F10 /* Info.plist */,
 				E2D2CFFC1E335E43000CC274 /* ColorViewControllerUITests.swift */,
+				E27B4AF51E35E19A00B785F2 /* po.swift */,
 			);
 			path = "Style GeneratorUITests";
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27B4AF61E35E19A00B785F2 /* po.swift in Sources */,
 				E2D2CFFD1E335E43000CC274 /* ColorViewControllerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

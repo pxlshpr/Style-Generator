@@ -28,6 +28,7 @@ class ColorViewControllerUITests: XCTestCase {
       // Check that each of the cells:
         // …have their own associated color value as the background-color
         // …have their labels hidden
+    XCTAssertTrue(true)
   }
   
   func testSelectingAndDeselectingAPrimaryColor() {
@@ -39,8 +40,15 @@ class ColorViewControllerUITests: XCTestCase {
       
     // Tap a random cell
     let cells = XCUIApplication().collectionViews.children(matching: .cell)
-    let randomCell = randomIntegerBetween0(and: cells.count)
-    cells.element(boundBy: randomCell).children(matching: other).element.tap()
+    let randomCell = randomIntegerBetween0(and: Int(cells.count))
+    XCUIApplication().collectionViews.children(matching: .cell).element(boundBy: 2).children(matching: .other).element.tap()
+    
+    let something=1
+    let two=2
+    
+    XCTAssertTrue(false)
+
+//    cells.element(boundBy: randomCell).children(matching: other).element.tap()
     
     //**** Check that these things (eventually) happen – give a max delay of say 5 seconds
     
