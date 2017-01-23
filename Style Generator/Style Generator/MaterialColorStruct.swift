@@ -17,7 +17,8 @@ struct MaterialColorStruct: Color {
     var barStyle: UIBarStyle
     var uiColor: UIColor {
         get {
-            return UIColor(hexString: hex)
+          //TODO: rethink this as UIColor is nil now
+          return UIColor(hexString: hex) ?? UIColor.white
         }
     }
 

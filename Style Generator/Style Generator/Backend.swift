@@ -37,7 +37,7 @@ extension ColorObject {
         
         var index = 0
         var colors = [ColorObject]()
-        for hue in iterateEnum(MaterialDesignHue.self) {
+        for hue in enumIterator(MaterialDesignHue.self) {
             guard index < hexes.count else {
                 break
             }
