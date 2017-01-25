@@ -1,6 +1,9 @@
 # .travis.yml
 osx_image: xcode8.2
 language: objective-c
+branches:
+  only:
+  - master
 script: ./test
 before_script:
   - chmod +x test
