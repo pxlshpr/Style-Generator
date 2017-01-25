@@ -19,11 +19,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Style GeneratorUITests/ColorViewControllerUITests.swift"
-            timestampString = "506847328.675473"
+            timestampString = "507027718.474414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "testSelectingAndDeselectingAPrimaryColor()"
             landmarkType = "7">
          </BreakpointContent>

@@ -41,7 +41,9 @@ class ColorViewControllerUITests: XCTestCase {
     // Tap a random cell
     let cells = XCUIApplication().collectionViews.children(matching: .cell)
     let randomCell = randomIntegerBetween0(and: Int(cells.count))
-    XCUIApplication().collectionViews.children(matching: .cell).element(boundBy: 2).children(matching: .other).element.tap()
+    let i = 2
+    //TODO: figure out why we can put numbers in boundBy but not variables??
+    XCUIApplication().collectionViews.children(matching: .cell).element(boundBy: 4).children(matching: .other).element.tap()
     
     let something=1
     let two=2
