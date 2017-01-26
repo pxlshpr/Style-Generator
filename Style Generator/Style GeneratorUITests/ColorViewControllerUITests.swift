@@ -16,8 +16,29 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   //UI Test naming convention:
-  //test[Action]_[WithCertainState]_[ShouldDoSomething]
-  //test[Action]_[ShouldDoSomething] // when we test it with all states
+  func testTapOnAnyCell_InUnselectedState_ShouldSelectCell() {
+    
+  }
+  
+  func testTapOnSelectedCell_InSelectedState_ShouldUnselectCell() {
+    
+  }
+  
+  func testTapOnUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
+    
+  }
+  
+  //TODO: change this to something like a pop animation indicating that nothing would happen. Just to demonstrate the usefulness of UI test driven developement. Or Behavior Driven Development (BDD) what have you.
+  func testTapSelectedCell_InSelectedState_ShouldDoNothing() {
+    
+  }
+  
+  func testTapNext_InSelectedState_ShouldTransitionToAccentColorSelection() {
+    
+  }
+  
+  // MARK: - Clean the rest!
+  
   func testTapOnColorCell_ShouldSelectItAndDeselectAnyPreviousSelection() {
     
     ensureNoCellsAreSelected()
@@ -28,7 +49,7 @@ class ColorViewControllerUITests: XCTestCase {
   func tapTheFirstCell() {
     let visibleCells = app.collectionViews.children(matching: .cell)
     let randomIndex = randomIntegerBetween0(and: Int(visibleCells.count))
-    visibleCells.element(boundBy: UInt(randomCell)).tap()    
+    visibleCells.element(boundBy: UInt(randomCell)).tap()
   }
   
   //TODO: think about if the fact that we're only doing this with *visible* cells should be of concern?
