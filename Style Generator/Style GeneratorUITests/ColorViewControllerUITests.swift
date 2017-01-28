@@ -39,7 +39,7 @@ class ColorViewControllerUITests: XCTestCase {
       
     // Tap a random cell
     let cells = XCUIApplication().collectionViews.children(matching: .cell)
-    let randomCell = randomIntegerBetween0(and: cells.count)
+    let index = (0..<cells.count).random
     cells.element(boundBy: randomCell).children(matching: other).element.tap()
     
     //**** Check that these things (eventually) happen – give a max delay of say 5 seconds
