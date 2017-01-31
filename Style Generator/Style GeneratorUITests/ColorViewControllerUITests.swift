@@ -16,20 +16,23 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   //MARK: - Tests
-  func testTapRandomCell_InUnselectedState_ShouldSelectCell() {
-    
-    guard let randomCell = randomCollectionViewCell() else {
-      XCTFail("A random cell could not be retrieved")
-      return
-    }
-    
-    ensureNoCellsAreSelected()
-    randomCell.tap()
-    ensureOnlyOneCellIsSelected(cell: randomCell)
+  func _testLoadApp_InDefaultState_AllCellsShouldBeInDefaultState() {
+    assertAllCellsAreAtDefaultState()
+  }
+  
+  func testTapRandomCell_InDefaultState_ShouldSelectCell() {    
+    if let cell = tapRandomCell() {
+      assertCellIsSelected(cell)
+      assertCellsAreDeselectedExceptFor(cell: cell)
+    }        
   }
 
-  func _testTapSelectedCell_InSelectedState_ShouldUnselectCell() {
-    
+  func _testTapSelectedCell_InSelectedState_??() {
+    if let cell = tapRandomCell() {
+      //maybe wait a bit
+      cell.tap()
+      assert
+    }
   }
   
   func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
@@ -41,6 +44,23 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   //MARK: - Private Helpers
+  
+  private func isCollectionViewInDefaultState() -> Bool {
+  }
+
+  private func isCollectionViewInSelectedState() -> Bool {
+  }
+
+  private func isCollectionViewInDeselectedState() -> Bool {
+  }
+  
+  private func tapARandomCell() -> XCUIElement? {
+    guard let cell = randomCollectionViewCell() else {
+      XCTFail("A random cell could not be retrieved")
+      return nil
+    }
+    return cell
+  }
   
   private func isSelectedCellLabel(label: String) -> Bool {
     return label.hasPrefix(Accessibility.SelectedTitlePrefix)
