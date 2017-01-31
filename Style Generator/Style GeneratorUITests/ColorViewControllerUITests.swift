@@ -15,10 +15,32 @@ class ColorViewControllerUITests: XCTestCase {
     super.tearDown()
   }
   
-  //UI Test naming convention:
+  //MARK: - Tests
   func testTapRandomCell_InUnselectedState_ShouldSelectCell() {
-    tapRandomCell()
+    
+    guard let cell = randomCollectionViewCell() else {
+      XCTFail("A random cell could not be retrieved")
+      return
+    }
+    
+    cell.tap()
+
+    //assert that the cell we tapped did what we expected
   }
+
+  //MARK: - Private Helpers
+  
+  private func 
+  
+  //MARK: - Reusable Helpers 
+  
+  //TODO: move whatever possible from here to Toolbelt
+  private func randomCollectionViewCell() -> XCUIElement? {
+    let cells = XCUIApplication().collectionViews.children(matching: .cell)
+    return cell.element(boundBy: (0..<cells.count).random)
+  }
+  
+  //MARK: - 💩 
   
 //  func _testSelectingAndDeselectingAPrimaryColor() {
 //    
@@ -46,12 +68,6 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   // MARK: - Private Functions
-  
-  func tapRandomCell() {
-    let visibleCells = app.collectionViews.children(matching: .cell)
-    let randomIndex = (0..<visibleCells.count).random
-    visibleCells.element(boundBy: randomIndex).tap()
-  }
   
   // MARK: - Clean the rest!
   
