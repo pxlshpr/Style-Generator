@@ -16,21 +16,23 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   //UI Test naming convention:
-  func testTapAnyCell_InUnselectedState_ShouldSelectCell() {
-    
+  func testTapRandomCell_InUnselectedState_ShouldSelectCell() {
+    tapRandomCell()
   }
   
-  func testSelectingAndDeselectingAPrimaryColor() {
-    
-    //TODO: do this a few times just for funm
-    //TODO: modularize code in here such as:
-      // …testing that the cell is in its 'unselected-state', i.e. label is hidde, background-color is that of associated value, etc.
-      // …testing that the screen is in a 'selected' or 'unselected' state perhaps – which would in turn use other modularized bits of test code
-      
-    // Tap a random cell
-    let cells = XCUIApplication().collectionViews.children(matching: .cell)
-    let index = (0..<cells.count).random
-    cells.element(boundBy: randomCell).children(matching: other).element.tap()
+//  func _testSelectingAndDeselectingAPrimaryColor() {
+//    
+//    //TODO: do this a few times
+//    //TODO: modularize code in here such as:
+//      // …testing that the cell is in its 'unselected-state', i.e. label is hidde, background-color is that of associated value, etc.
+//      // …testing that the screen is in a 'selected' or 'unselected' state perhaps – which would in turn use other modularized bits of test code
+//      
+//    // Tap a random cell
+//    let cells = XCUIApplication().collectionViews.children(matching: .cell)
+//    let index = (0..<cells.count).random
+//    cells.element(boundBy: randomCell).children(matching: other).element.tap()
+//  }
+  
   func _testTapSelectedCell_InSelectedState_ShouldUnselectCell() {
     
   }
@@ -45,10 +47,10 @@ class ColorViewControllerUITests: XCTestCase {
   
   // MARK: - Private Functions
   
-  func tapCell() {
+  func tapRandomCell() {
     let visibleCells = app.collectionViews.children(matching: .cell)
-    let randomIndex = randomIntegerBetween0(and: Int(visibleCells.count))
-    visibleCells.element(boundBy: UInt(randomCell)).tap()
+    let randomIndex = (0..<visibleCells.count).random
+    visibleCells.element(boundBy: randomIndex).tap()
   }
   
   // MARK: - Clean the rest!
@@ -57,7 +59,7 @@ class ColorViewControllerUITests: XCTestCase {
   func ensureNoCellsAreSelected() {
   }
   
-  func testInitialState() {
+  func _testInitialState() {
     //TODO: move these all to unit-tests!
     // Check that the Navigation Bar:
     // ... title is correct
