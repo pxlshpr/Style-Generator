@@ -18,29 +18,68 @@ class ColorViewControllerUITests: XCTestCase {
   //MARK: - Tests
   func testTapRandomCell_InUnselectedState_ShouldSelectCell() {
     
-    guard let cell = randomCollectionViewCell() else {
+    guard let randomCell = randomCollectionViewCell() else {
       XCTFail("A random cell could not be retrieved")
       return
     }
     
-    cell.tap()
-
-    //assert that the cell we tapped did what we expected
+    ensureNoCellsAreSelected()
+    randomCell.tap()
+    ensureOnlyOneCellIsSelected(cell: randomCell)
   }
 
+  func _testTapSelectedCell_InSelectedState_ShouldUnselectCell() {
+    
+  }
+  
+  func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
+    
+  }
+  
+  func _testTapNext_InSelectedState_ShouldTransitionToAccentColorSelection() {
+    
+  }
+  
   //MARK: - Private Helpers
   
-  private func 
-  
-  //MARK: - Reusable Helpers 
-  
-  //TODO: move whatever possible from here to Toolbelt
-  private func randomCollectionViewCell() -> XCUIElement? {
-    let cells = XCUIApplication().collectionViews.children(matching: .cell)
-    return cell.element(boundBy: (0..<cells.count).random)
+  private func isSelectedCellLabel(label: String) -> Bool {
+    return label.hasPrefix(Accessibility.SelectedTitlePrefix)
   }
   
-  //MARK: - 💩 
+  private func isDeslectedCellLabel(label: String) -> Bool {
+    return label.hasPrefix(Accessibility.DeselectedTitlePrefix)
+  }
+
+  func ensureAllCellsAreAtDefaultState() {
+    for cell in collectionViewCells() {
+      XCTAssertFalse(isSelectedCellLabel(label: cell.label), "A cell was found to be incorrectly selected")
+      XCTAssertFalse(isDeselectedCellLabel(label: cell.label), "A cell was found to be incorrectly deselected")
+    }
+  }
+  
+  func ensureOnlyOneCellIsSelected(cell: XCUIElement) {
+    let cells = collectionViewCells()
+    XCTAssertTrue(isSelectedCellLabel(label: cell.label), "The expected cell wasn't selected")
+    for otherCell in cells {
+      if otherCell == cell {
+        XCTAssertTrue(isDeselectedCellLabel(label: otherCell.label), "A cell expected to be in the deselected state, wasn't")
+      }
+    }
+  }
+  
+  //MARK: - Reusable Helpers
+  
+  //TODO: move whatever possible from here to Toolbelt
+  private func collectionViewCells() -> [XCUIElement] {
+    return XCUIApplication().collectionViews.children(matching: .cell).allElementsBoundByIndex
+  }
+  
+  private func randomCollectionViewCell() -> XCUIElement? {
+    let cells = collectionViewCells()
+    return cells.count > 0 ? cells[(0..<cells.count).random] : nil
+  }
+  
+  //MARK: - 💩
   
 //  func _testSelectingAndDeselectingAPrimaryColor() {
 //    
@@ -55,25 +94,9 @@ class ColorViewControllerUITests: XCTestCase {
 //    cells.element(boundBy: randomCell).children(matching: other).element.tap()
 //  }
   
-  func _testTapSelectedCell_InSelectedState_ShouldUnselectCell() {
-    
-  }
-  
-  func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
-    
-  }
-  
-  func _testTapNext_InSelectedState_ShouldTransitionToAccentColorSelection() {
-    
-  }
-  
   // MARK: - Private Functions
   
   // MARK: - Clean the rest!
-  
-  //TODO: think about if the fact that we're only doing this with *visible* cells should be of concern?
-  func ensureNoCellsAreSelected() {
-  }
   
   func _testInitialState() {
     //TODO: move these all to unit-tests!
