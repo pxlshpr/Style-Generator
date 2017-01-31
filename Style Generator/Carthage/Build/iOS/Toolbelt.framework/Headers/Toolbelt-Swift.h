@@ -124,14 +124,20 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @interface UIColor (SWIFT_EXTENSION(Toolbelt))
 /**
   Initializes and returns a color object using the provided string representation of a hexadecimal number.
-  \param hexString The hexadecimal number of the color, represented as a string. It may be optionally prepended with the ‘#’ symbol.
-
+  <ul>
+    <li>
+      parameters:
+    </li>
+    <li>
+      hexString: The hexadecimal number of the color, represented as a string. It may be optionally prepended with the ‘#’ symbol.
+    </li>
+  </ul>
 
   returns:
 
-  The color object for the provided hexadecimal, if valid. If an invalid hexadecimal number is provided, UIColor.white is returned.
+  The color object for the provided hexadecimal, if valid. If an invalid hexadecimal number is provided, UIColor.black is returned.
 */
-- (nonnull instancetype)initWithHexString:(NSString * _Nonnull)hexString;
+- (nullable instancetype)initWithHexString:(NSString * _Nonnull)hexString;
 @end
 
 #pragma clang diagnostic pop
