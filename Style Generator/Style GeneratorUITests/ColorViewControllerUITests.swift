@@ -16,8 +16,8 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   //MARK: - Tests
-  func _testLoadApp_InDefaultState_AllCellsShouldBeInDefaultState() {
-    assertAllCellsAreAtDefaultState()
+  func testLoadApp_InDefaultState_CollectionViewShouldBeInDefaultState() {
+    assertCollectionViewInDefaultState()
   }
   
   func testTapRandomCell_InDefaultState_ShouldSelectCell() {    
@@ -27,11 +27,11 @@ class ColorViewControllerUITests: XCTestCase {
     }        
   }
 
-  func _testTapSelectedCell_InSelectedState_??() {
+  func testTapSelectedCell_InSelectedState_ShouldReturnCollectionViewToDefaultState() {
     if let cell = tapRandomCell() {
       //maybe wait a bit
-      cell.tap()
-      assert
+      cell.tap() // tap it again
+      assertCollectionViewInDefaultState()
     }
   }
   
@@ -43,8 +43,18 @@ class ColorViewControllerUITests: XCTestCase {
     
   }
   
-  //MARK: - Private Helpers
+  //MARK: - Helpers (Assertions)
+  private func assertCollectionViewInDefaultState() {
+    //make sure all cells are in default state as wel
+  }
   
+  private func assertCellIsSelected(cell: XCUIElement) {
+  }
+  
+  private func assertCellsAreDeselectedExceptFor(_ cell: XCUIElement) {
+  }
+  
+  //MARK: – DRY helpers
   private func isCollectionViewInDefaultState() -> Bool {
   }
 
@@ -53,7 +63,9 @@ class ColorViewControllerUITests: XCTestCase {
 
   private func isCollectionViewInDeselectedState() -> Bool {
   }
-  
+
+  //MARK: - Helpers (Actions)
+    
   private func tapARandomCell() -> XCUIElement? {
     guard let cell = randomCollectionViewCell() else {
       XCTFail("A random cell could not be retrieved")
@@ -62,7 +74,9 @@ class ColorViewControllerUITests: XCTestCase {
     return cell
   }
   
-  private func isSelectedCellLabel(label: String) -> Bool {
+  //MARK: - Helpers
+
+  private func as(label: String) -> Bool {
     return label.hasPrefix(Accessibility.SelectedTitlePrefix)
   }
   
