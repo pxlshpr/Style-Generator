@@ -1,6 +1,19 @@
 import XCTest
 import Toolbelt
 
+//TODO: Document somewhere that our collection view (or the controller) has two states – default and selected. Whereas its cells have Default/Deselected. When the collection view is in its default state – all its cells are at their default states. When the collection view transitions ot its selected state, all cells but the selected cell transitions to their 'deselected' cells. But maybe the tests themselves should describe this?
+
+//TODO: see if this is doable
+private extension XCUIElement {
+  func isCellInDefaultState() -> Bool {
+    //check that XCUIElement is actually a cell (can we do that)
+    
+  }
+  
+  func isCellInDeselectedState() -> Bool {
+  }
+}
+
 class ColorViewControllerUITests: XCTestCase {
   
   let app = XCUIApplication()
@@ -15,27 +28,40 @@ class ColorViewControllerUITests: XCTestCase {
     super.tearDown()
   }
   
+  //TODO: see if something like 'self.app.navigationBars["Primary Color"].buttons["Next"].value can be casted as a UIBarButtonItem?? if so – this changes everything! if so, then add assertions for stuff like – colors of navBar-background, navBar-tint, barButton-tint, cell-backgrounds, if possible
+
+  
   //MARK: - Tests
-  func testLoadApp_InDefaultState_CollectionViewShouldBeInDefaultState() {
-    assertCollectionViewInDefaultState()
+  func testLoadApp_InDefaultState_ShouldBeInDefaultState() {
+    XCTAssertEqual(app.collectionViews.count, 1, "There wasn't exactly 1 collection view as expected")
+    //navigation bar title is primary-default localized string
+    //navigation bar right button exists and is primary localized string
+    //navigation bar right bar button is disabled
+    //navigation bar left button does not exist
+    //for each cell in collectionViewCells
+    //  cell is enabled/hittable
+    //  cell is in its default state - check that label is not visible (doesn't exist or isn't hittable etc) if possible
   }
   
-  func testTapRandomCell_InDefaultState_ShouldSelectCell() {    
+  func testTapRandomCell_InDefaultState_ShouldTransitionToSelectedState() {
     if let cell = tapRandomCell() {
-      assertCellIsSelected(cell)
-      assertCellsAreDeselectedExceptFor(cell: cell)
-    }        
+      //tapped cell is in default state - check that label is not visible (doesn't exist or isn't hittable etc) if possible
+      //other cells are in deselected state - check that label IS visible (doesn't exist or isn't hittable etc) if possible
+      //navigation bar right bar button is enabled
+      //navigation bar title is cell's default label
+    }
   }
 
-  func testTapSelectedCell_InSelectedState_ShouldReturnCollectionViewToDefaultState() {
+  func testTapSelectedCell_InSelectedState_ShouldTransitionToDefaultState() {
     if let cell = tapRandomCell() {
-      //maybe wait a bit
       cell.tap() // tap it again
-      assertCollectionViewInDefaultState()
+      //now assert the default state for the collecitonView just like we did in testLoadApp_InDefaultState_ShouldBeInDefaultState()
     }
   }
   
-  func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
+  //MARK: - Bring stuff from down here back up as needed ⬇️
+  
+/*  func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
     
   }
   
@@ -43,10 +69,14 @@ class ColorViewControllerUITests: XCTestCase {
     
   }
   
-  //MARK: - Helpers (Assertions)
+  //MARK: - Helpers (Assertions)  
   private func assertCollectionViewInDefaultState() {
     //make sure all cells are in default state as wel
+    assertNextButtonDisabled()
+    for cell in 
   }
+  
+  
   
   private func assertCellIsSelected(cell: XCUIElement) {
   }
@@ -76,7 +106,7 @@ class ColorViewControllerUITests: XCTestCase {
   
   //MARK: - Helpers
 
-  private func as(label: String) -> Bool {
+  private func isSlectedCellLabel(label: String) -> Bool {
     return label.hasPrefix(Accessibility.SelectedTitlePrefix)
   }
   
@@ -193,4 +223,5 @@ class ColorViewControllerUITests: XCTestCase {
 //  }
 //  
   //TODO: add code that tests transitioning to next screen
+  */
 }
