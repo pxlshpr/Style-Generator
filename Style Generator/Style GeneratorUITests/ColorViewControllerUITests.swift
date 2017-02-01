@@ -14,10 +14,26 @@ private extension XCUIElement {
 //  }
 }
 
+//TODO: rename this according to state and make it a localized string that is shared with the codebase (maybe make the strings file available in both?
+struct ExpectedStrings {
+  
+  struct NavigationTitle {
+    static let PrimaryDefault = "Primary Color"
+  }
+  
+  struct BarButtonLabels {
+    static let PrimaryNext = "Next"
+  }
+}
+
 class ColorViewControllerUITests: XCTestCase {
   
   let app = XCUIApplication()
   
+  var cells: [XCUIElement] {
+    return XCUIApplication().collectionViews.children(matching: .cell).allElementsBoundByIndex
+  }
+
   override func setUp() {
     super.setUp()
     continueAfterFailure = false
@@ -28,30 +44,70 @@ class ColorViewControllerUITests: XCTestCase {
     super.tearDown()
   }
   
-  //TODO: see if something like 'self.app.navigationBars["Primary Color"].buttons["Next"].value can be casted as a UIBarButtonItem?? if so – this changes everything! if so, then add assertions for stuff like – colors of navBar-background, navBar-tint, barButton-tint, cell-backgrounds, if possible
-
+  func _testLoadApp_InDefaultState_ShouldBeInDefaultState() {
+    assertDefaultState()
+  }
   
-  //MARK: - Tests
-  func testLoadApp_InDefaultState_ShouldBeInDefaultState() {
-    XCTAssertEqual(app.collectionViews.count, 0, "There wasn't exactly 1 collection view as expected")
-    //navigation bar title is primary-default localized string
-    //navigation bar right button exists and is primary localized string
-    //navigation bar right bar button is disabled
-    //navigation bar left button does not exist
-    //for each cell in collectionViewCells
-    //  cell is enabled/hittable
-    //  cell is in its default state - check that label is not visible (doesn't exist or isn't hittable etc) if possible
+  func testTapRandomCell_InDefaultState_ShouldTransitionToSelectedState() {
+    
+    let randomCell = cells.random
+    randomCell.tap()
+    assertCellIsInDefaultState(randomCell)
+    for cell in cells {
+      guard cell != randomCell else { continue }
+      //TODO: swap the cell states so that they are all initially deselected with no labels and only one is *selected* and then the label is added. This is so that we think of the context of the accessibilty label and preserving its relevancy to those who use it for its true intent.
+      assertCellIsInDeselectedState(cell)
+    }
+    //navigation bar right bar button is enabled
+    let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
+    let nextButton = navigationBar.buttons[ExpectedStrings.BarButtonLabels.PrimaryNext]
+    XCTAssertFalse(nextButton.isEnabled, "Next button is incorrectly enabled initially")
+    
+    //navigation bar title is cell's default label. Do the thingw here we select another cell (either the first or last one, and record our random cell's title, and then select the random cell again and now make sure that the navigation bar title matches it!)
+    //XCTAssert...
+  }
+
+}
+
+extension Array {
+  var random: Element {
+    return self[(0..<self.count).random]
   }
 }
 
-//  func testTapRandomCell_InDefaultState_ShouldTransitionToSelectedState() {
-//    if let cell = tapRandomCell() {
-//      //tapped cell is in default state - check that label is not visible (doesn't exist or isn't hittable etc) if possible
-//      //other cells are in deselected state - check that label IS visible (doesn't exist or isn't hittable etc) if possible
-//      //navigation bar right bar button is enabled
-//      //navigation bar title is cell's default label
-//    }
-//  }
+extension ColorViewControllerUITests {
+  
+  func assertDefaultState() {
+    let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
+    XCTAssertTrue(navigationBar.exists, "Navigation bar with expected title doesn't exist")
+    XCTAssertEqual(navigationBar.buttons.count, 1, "Navigation bar initially has more than 1 button")
+    
+    let nextButton = navigationBar.buttons[ExpectedStrings.BarButtonLabels.PrimaryNext]
+    XCTAssertTrue(nextButton.exists, "Next button doesn't exist on navigation bar")
+    XCTAssertFalse(nextButton.isEnabled, "Next button is incorrectly enabled initially")
+    
+    XCTAssertEqual(app.collectionViews.count, 1, "There wasn't exactly 1 collection view as expected")
+    let cells = XCUIApplication().collectionViews.children(matching: .cell).allElementsBoundByIndex
+    XCTAssertGreaterThan(cells.count, 0, "Collection view initially has no cells")
+    
+    for cell in cells {
+      assertCellIsInDefaultState(cell)
+    }
+  }
+  
+  func assertCellIsInDefaultState(_ cell: XCUIElement) {
+    let staticTexts = cell.children(matching: .staticText).allElementsBoundByIndex
+    XCTAssertEqual(staticTexts.count, 0, "Cell incorrectly had a staticText element")
+    XCTAssertFalse(cell.label.hasPrefix(Accessibility.DeselectedTitlePrefix), "Cell's label indicated that it was deselected and not in the default state")
+  }
+
+  func assertCellIsInDeselectedState(_ cell: XCUIElement) {
+    let staticTexts = cell.children(matching: .staticText).allElementsBoundByIndex
+    XCTAssertEqual(staticTexts.count, 1, "Cell was missing a staticText element")
+    XCTAssertTrue(cell.label.hasPrefix(Accessibility.DeselectedTitlePrefix), "Cell's label indicated that it wasn't deselected")
+  }
+}
+
 //
 //  func testTapSelectedCell_InSelectedState_ShouldTransitionToDefaultState() {
 //    if let cell = tapRandomCell() {
@@ -59,7 +115,7 @@ class ColorViewControllerUITests: XCTestCase {
 //      //now assert the default state for the collecitonView just like we did in testLoadApp_InDefaultState_ShouldBeInDefaultState()
 //    }
 //  }
-//  
+//
   //MARK: - Bring stuff from down here back up as needed ⬇️
   
 /*  func _testTapUnselectedCell_InSelectedState_ShouldSwitchSelectedCell() {
@@ -227,3 +283,19 @@ class ColorViewControllerUITests: XCTestCase {
  
 }
 */
+
+
+//TODO: add this to toolbelt (first see if really needed anymore)
+//http://stackoverflow.com/questions/33422681/xcode-ui-test-ui-testing-failure-failed-to-scroll-to-visible-by-ax-action/33534187#33534187
+/*Sends a tap event to a hittable/unhittable element.*/
+extension XCUIElement {
+  func forceTapElement() {
+    if self.isHittable {
+      self.tap()
+    }
+    else {
+      let coordinate: XCUICoordinate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+      coordinate.tap()
+    }
+  }
+}
