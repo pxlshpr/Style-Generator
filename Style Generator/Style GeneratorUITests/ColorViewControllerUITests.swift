@@ -45,19 +45,21 @@ class ColorViewControllerUITests: XCTestCase {
   }
   
   func _testLoadApp_InDefaultState_ShouldBeInDefaultState() {
-    assertDefaultState()
+    assertApp_DefaultState()
   }
   
   func testTapRandomCell_InDefaultState_ShouldTransitionToSelectedState() {
     
+    //assuming that assertApp_DefaultState() would work here since its in another test
+    
     let randomCell = cells.random
     randomCell.tap()
-    assertCellIsInDefaultState(randomCell)
+    XCTAssertTrue(randomCell.isCellInSelectedState, "Tapped cell wasn't in selected state as expected")
     for cell in cells {
       guard cell != randomCell else { continue }
-      //TODO: swap the cell states so that they are all initially deselected with no labels and only one is *selected* and then the label is added. This is so that we think of the context of the accessibilty label and preserving its relevancy to those who use it for its true intent.
-      assertCellIsInDeselectedState(cell)
+      XCTAssertTrue(cell.isCellInDeselectedState, "Cell wasn't in deselected state as expected")
     }
+    
     //navigation bar right bar button is enabled
     let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
     let nextButton = navigationBar.buttons[ExpectedStrings.BarButtonLabels.PrimaryNext]
@@ -69,15 +71,9 @@ class ColorViewControllerUITests: XCTestCase {
 
 }
 
-extension Array {
-  var random: Element {
-    return self[(0..<self.count).random]
-  }
-}
-
 extension ColorViewControllerUITests {
   
-  func assertDefaultState() {
+  func assertApp_DefaultState() {
     let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
     XCTAssertTrue(navigationBar.exists, "Navigation bar with expected title doesn't exist")
     XCTAssertEqual(navigationBar.buttons.count, 1, "Navigation bar initially has more than 1 button")
@@ -91,20 +87,34 @@ extension ColorViewControllerUITests {
     XCTAssertGreaterThan(cells.count, 0, "Collection view initially has no cells")
     
     for cell in cells {
-      assertCellIsInDefaultState(cell)
+      XCTAssertTrue(cell.isCellInDefaultState, "Cell wasn't initially in default state as expected")
     }
   }
-  
-  func assertCellIsInDefaultState(_ cell: XCUIElement) {
-    let staticTexts = cell.children(matching: .staticText).allElementsBoundByIndex
-    XCTAssertEqual(staticTexts.count, 0, "Cell incorrectly had a staticText element")
-    XCTAssertFalse(cell.label.hasPrefix(Accessibility.DeselectedTitlePrefix), "Cell's label indicated that it was deselected and not in the default state")
-  }
+}
 
-  func assertCellIsInDeselectedState(_ cell: XCUIElement) {
-    let staticTexts = cell.children(matching: .staticText).allElementsBoundByIndex
-    XCTAssertEqual(staticTexts.count, 1, "Cell was missing a staticText element")
-    XCTAssertTrue(cell.label.hasPrefix(Accessibility.DeselectedTitlePrefix), "Cell's label indicated that it wasn't deselected")
+private extension XCUIElement {
+  var isCellInDefaultState: Bool {
+    guard elementType == .cell else { return false }
+    
+    let hasNoStaticTexts = children(matching: .staticText).count == 0
+    let hasNoAccessibilityPrefix = !label.hasPrefix(Accessibility.SelectedTitlePrefix)
+    return hasNoStaticTexts && hasNoAccessibilityPrefix
+  }
+  
+  var isCellInSelectedState: Bool {
+    guard elementType == .cell else { return false }
+    
+    let hasNoStaticTexts = children(matching: .staticText).count == 0
+    let hasAccessibilityPrefix = label.hasPrefix(Accessibility.SelectedTitlePrefix)
+    return hasNoStaticTexts && hasAccessibilityPrefix
+  }
+  
+  var isCellInDeselectedState: Bool {
+    guard elementType == .cell else { return false }
+    
+    let hasStaticText = children(matching: .staticText).count == 1
+    let hasNoAccessibilityPrefix = !label.hasPrefix(Accessibility.SelectedTitlePrefix)
+    return hasStaticText && hasNoAccessibilityPrefix
   }
 }
 
@@ -299,3 +309,11 @@ extension XCUIElement {
     }
   }
 }
+
+//TOOD: add this to toolbelt with tests
+extension Array {
+  var random: Element {
+    return self[(0..<self.count).random]
+  }
+}
+
