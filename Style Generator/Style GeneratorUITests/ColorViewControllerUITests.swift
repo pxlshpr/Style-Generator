@@ -92,9 +92,9 @@ extension ColorViewControllerUITests {
   }
 }
 
-private extension XCUIElement {
+private extension XCUIElement {  
   var isCellInDefaultState: Bool {
-    guard elementType == .cell else { return false }
+    guard isCell else { return false }
     
     let hasNoStaticTexts = children(matching: .staticText).count == 0
     let hasNoAccessibilityPrefix = !label.hasPrefix(Accessibility.SelectedTitlePrefix)
@@ -102,7 +102,7 @@ private extension XCUIElement {
   }
   
   var isCellInSelectedState: Bool {
-    guard elementType == .cell else { return false }
+    guard isCell { return false }
     
     let hasNoStaticTexts = children(matching: .staticText).count == 0
     let hasAccessibilityPrefix = label.hasPrefix(Accessibility.SelectedTitlePrefix)
@@ -110,12 +110,18 @@ private extension XCUIElement {
   }
   
   var isCellInDeselectedState: Bool {
-    guard elementType == .cell else { return false }
+    guard isCell else { return false }
     
     let hasStaticText = children(matching: .staticText).count == 1
     let hasNoAccessibilityPrefix = !label.hasPrefix(Accessibility.SelectedTitlePrefix)
     return hasStaticText && hasNoAccessibilityPrefix
   }
+  
+  //MARK: - Simpler
+  
+  var isCell: Bool {
+    return elementType == .cell
+  }  
 }
 
 //
