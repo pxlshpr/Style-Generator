@@ -1,0 +1,1 @@
+xcodebuild -project "Style Generator.xcodeproj" -scheme "Style Generator-UITests" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' -derivedDataPath './output' test

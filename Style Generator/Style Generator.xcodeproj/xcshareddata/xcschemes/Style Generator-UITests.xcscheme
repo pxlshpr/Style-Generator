@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Style Generator.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E2D3CE211E00CE0F00C77F10"
+               BuildableName = "Style GeneratorUITests.xctest"
+               BlueprintName = "Style GeneratorUITests"
+               ReferencedContainer = "container:Style Generator.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,16 +42,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2D3CE161E00CE0F00C77F10"
-               BuildableName = "Style GeneratorTests.xctest"
-               BlueprintName = "Style GeneratorTests"
-               ReferencedContainer = "container:Style Generator.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
