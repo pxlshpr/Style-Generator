@@ -13,7 +13,7 @@ class ColorViewController: UIViewController {
   lazy var nextButton: UIBarButtonItem = {
     let button = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(tappedNext))
     button.isEnabled = false
-//    button.accessibilityLabel = NSLocalizedString("hello", comment: "label for Next button")
+    //    button.accessibilityLabel = NSLocalizedString("hello", comment: "label for Next button")
     button.accessibilityHint = NSLocalizedString("hello", comment: "label for Next button")
     return button
   }()
