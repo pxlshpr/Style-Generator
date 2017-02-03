@@ -37,12 +37,12 @@ class ColorViewController: UIViewController {
         collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
-    
+  
     // MARK: Properties
     
     var state: State = .initial {
         didSet {
-            
+          
         }
     }
     
