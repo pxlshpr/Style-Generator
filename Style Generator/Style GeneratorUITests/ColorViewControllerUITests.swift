@@ -57,7 +57,9 @@ class ColorViewControllerUITests: XCTestCase {
     XCTAssertTrue(randomCell.isCellInSelectedState, "Tapped cell wasn't in selected state as expected")
     for cell in cells {
       guard cell != randomCell else { continue }
-      XCTAssertTrue(cell.isCellInDeselectedState, "Cell wasn't in deselected state as expected")
+      print("asserting that \(cell.label) is deselected")
+      cell.assertCellInDeselectedState()
+//      XCTAssertTrue(cell.isCellInDeselectedState, "Cell wasn't in deselected state as expected")
     }
     
     //navigation bar right bar button is enabled
@@ -102,7 +104,7 @@ private extension XCUIElement {
   }
   
   var isCellInSelectedState: Bool {
-    guard isCell { return false }
+    guard isCell else { return false }
     
     let hasNoStaticTexts = children(matching: .staticText).count == 0
     let hasAccessibilityPrefix = label.hasPrefix(Accessibility.SelectedTitlePrefix)
@@ -115,6 +117,13 @@ private extension XCUIElement {
     let hasStaticText = children(matching: .staticText).count == 1
     let hasNoAccessibilityPrefix = !label.hasPrefix(Accessibility.SelectedTitlePrefix)
     return hasStaticText && hasNoAccessibilityPrefix
+  }
+  
+  func assertCellInDeselectedState() {
+    guard isCell else { return }
+    
+    XCTAssertEqual(children(matching: .staticText).count, 1)
+    XCTAssertFalse(label.hasPrefix(Accessibility.SelectedTitlePrefix))
   }
   
   //MARK: - Simpler

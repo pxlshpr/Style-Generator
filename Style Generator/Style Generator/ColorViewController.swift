@@ -19,24 +19,6 @@ class ColorViewController: UIViewController {
   }()
   
   lazy var layout: UICollectionViewLayout = {
-    
-    //TODO: remove constants
-    
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(ColorCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = UIColor.white
-        return collectionView
-    }()
-  
-    // MARK: Properties
-    
-    var state: State = .initial {
-        didSet {
-          
-        }
     let layout = UICollectionViewFlowLayout()
     
     layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
@@ -46,13 +28,15 @@ class ColorViewController: UIViewController {
     return layout
   }()
   
+    //TODO: remove constants
+    
   lazy var collectionView: UICollectionView = {
-    let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
-    collectionView.dataSource = self
-    collectionView.delegate = self
-    collectionView.register(ColorCell.self, forCellWithReuseIdentifier: "Cell")
-    collectionView.backgroundColor = UIColor.white
-    return collectionView
+      let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
+      collectionView.dataSource = self
+      collectionView.delegate = self
+      collectionView.register(ColorCell.self, forCellWithReuseIdentifier: "Cell")
+      collectionView.backgroundColor = UIColor.white
+      return collectionView
   }()
   
   // MARK: Properties

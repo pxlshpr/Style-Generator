@@ -11,20 +11,20 @@ protocol CollectionViewControllerTestCase {
 
 class ColorViewControllerTests: XCTestCase, CollectionViewControllerTestCase {
 
-  typealias ColorSet = [Color] 
-
-  // TODO: The test colorSets should include: material-primary, material-secondary, just one or two, thousands, many of the same color
-  // TODO: stop all branches but master from triggering a build on Travis
-  let colorSets: [ColorSet] = ...
-  let colorViewControllers: [ColorViewController]
-    
+//  typealias ColorSet = [Color] 
+//
+//  // TODO: The test colorSets should include: material-primary, material-secondary, just one or two, thousands, many of the same color
+//  // TODO: stop all branches but master from triggering a build on Travis
+//  let colorSets: [ColorSet] = ...
+//  let colorViewControllers: [ColorViewController]
+  
   override func setUp() {
     super.setUp()
-    for colorSet in colorSets {
-      let viewController = ColorViewController() // can do?
-      viewController.view // how we load the view programatically?
-      colorViewControllers.append(viewController)
-    }
+//    for colorSet in colorSets {
+//      let viewController = ColorViewController() // can do?
+//      viewController.view // how we load the view programatically?
+//      colorViewControllers.append(viewController)
+//    }
   }
     
   override func tearDown() {
@@ -33,11 +33,11 @@ class ColorViewControllerTests: XCTestCase, CollectionViewControllerTestCase {
     super.tearDown()
   }
   
-  func testThatNoneOfTheCellsAreNil() {
+  func testThatNoCellsAreNil() {
     XCTAssertTrue(false)
   }
   
-  func testThatNumberOfCellsIsAsExpected() {
+  func testThatCellCountIsCorrect() {
     XCTAssertTrue(false)
   }
   
