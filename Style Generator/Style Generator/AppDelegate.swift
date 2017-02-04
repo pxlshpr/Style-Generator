@@ -13,14 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         prepopulateRealm()
         deleteAllRealmData()
-        ColorObject.addMaterialColors()
+        Color.addMaterialColors()
         //TODO: have a notification for when the Realm data actually does get added so that we can reload at that point 
         
-        let primaryColorViewController = ColorViewController(colors: MaterialColorStruct.primaryColors)
+        let primaryColorGridViewController = ColorGridViewController(colors: MaterialColorStruct.primaryColors)
 //        let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
-//        let secondaryColorViewController = ColorViewController(colors: colors)
+//        let secondaryColorGridViewController = ColorGridViewController(colors: colors)
         
-        let navigationViewController = UINavigationController(rootViewController: primaryColorViewController)
+        let navigationViewController = UINavigationController(rootViewController: primaryColorGridViewController)
         
         self.window?.rootViewController = navigationViewController
         self.window?.makeKeyAndVisible()

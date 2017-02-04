@@ -1,18 +1,18 @@
 import UIKit
 
-protocol Color: Equatable {
+protocol ColorProtocol: Equatable {
     var name: String { get }
     var uiColor: UIColor { get }
     var barStyle: UIBarStyle { get }
 }
 
-func ==<T: Color>(lhs: T, rhs: T) -> Bool {
+func ==<T: ColorProtocol>(lhs: T, rhs: T) -> Bool {
     return lhs.name == rhs.name &&
         rhs.uiColor == lhs.uiColor &&
         lhs.barStyle == rhs.barStyle
 }
 
-struct MaterialColorStruct: Color {
+struct MaterialColorStruct: ColorProtocol {
     var name: String
     var barStyle: UIBarStyle
     var uiColor: UIColor {

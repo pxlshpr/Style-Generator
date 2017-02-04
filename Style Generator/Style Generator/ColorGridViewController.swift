@@ -1,7 +1,7 @@
 import UIKit
 import Toolbelt
 
-class ColorViewController: UIViewController {
+class ColorGridViewController: UIViewController {
   
   enum State {
     case initial
@@ -94,7 +94,7 @@ class ColorViewController: UIViewController {
   //TODO: fix the indentation issues, consolidate tabs-vs-spaces over iPad and Mac
   //TODO: move this to another section
   func catchInsertionCompletedNotification(notification: Notification) -> Void {
-    //TODO: maybe update our local variable here. Make PrimaryViewCVontroller a subclass or inherit the protocl of the general ColorViewController so that it has the basic displaying logic with a bit of extra stuff for grabbing the speccific data from Realm
+    //TODO: maybe update our local variable here. Make PrimaryViewCVontroller a subclass or inherit the protocl of the general ColorGridViewController so that it has the basic displaying logic with a bit of extra stuff for grabbing the speccific data from Realm
     //TODO: this should implicitly cause the collectionView to reload as discussed earlier
   }
   
@@ -104,14 +104,14 @@ class ColorViewController: UIViewController {
     
     //TODO: replace this with the real thing
     let colors = [MaterialColorStruct.brown, MaterialColorStruct.amber]
-    let accentViewController = ColorViewController(colors: colors)
+    let accentViewController = ColorGridViewController(colors: colors)
     self.navigationController?.pushViewController(accentViewController, animated: true)
     accentViewController.navigationController?.navigationBar.tintColor = self.nextButton.tintColor
   }
 }
 
 // MARK: - UICollectionViewDataSource
-extension ColorViewController: UICollectionViewDataSource {
+extension ColorGridViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     // TODO: if we've got the go from Realm, return the list of primary material colors, else loading state so 0 or 1
@@ -149,7 +149,7 @@ extension ColorViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ColorViewController: UICollectionViewDelegate {
+extension ColorGridViewController: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     

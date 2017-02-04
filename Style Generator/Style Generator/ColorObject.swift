@@ -5,7 +5,7 @@ import Toolbelt
 //TODO: decide where we'll be putting these as a general rule
 let insertionCompletedNotification = Notification.Name(rawValue:"InsertionCompletedNotification")
 
-class ColorObject: Object {
+class Color: Object {
   
   enum Hue: String {
     case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700
@@ -22,26 +22,23 @@ class ColorObject: Object {
     set { if let unwrapped = newValue { privateHue = unwrapped.rawValue } }
   }
   
-  let accents = List<ColorObject>()
-  let hues = List<ColorObject>()
+  let accents = List<Color>()
+  let hues = List<Color>()
   
   override static func primaryKey() -> String? {
     return "hex"
   }
-}
-
-extension ColorObject {
   
   class func addColor(withName name: String, hexes: [String]) {
     
     var index = 0
-    var colors = [ColorObject]()
+    var colors = [Color]()
     for hue in enumIterator(Hue.self) {
       guard index < hexes.count else {
         break
       }
       
-      let color = ColorObject()
+      let color = Color()
       color.hex = hexes[index]
       color.hue = hue
       index += 1
@@ -56,6 +53,10 @@ extension ColorObject {
       }
     }
   }
+}
+
+extension Color {
+  
   
   class func addMaterialColors() {
     

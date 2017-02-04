@@ -26,7 +26,7 @@ struct ExpectedStrings {
   }
 }
 
-class ColorViewControllerUITests: XCTestCase {
+class ColorGridViewControllerUITests: XCTestCase {
   
   let app = XCUIApplication()
   
@@ -73,7 +73,7 @@ class ColorViewControllerUITests: XCTestCase {
 
 }
 
-extension ColorViewControllerUITests {
+extension ColorGridViewControllerUITests {
   
   func assertApp_DefaultState() {
     let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
