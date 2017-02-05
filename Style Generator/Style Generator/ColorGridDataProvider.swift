@@ -11,15 +11,6 @@ import RealmSwift
 
 public class ColorGirdDataProvider: NSObject, ColorGridDataProviderProtocol {
   
-  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return UICollectionViewCell()
-  }
-
-  
-  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 0
-  }
-  
   var realm: Realm?
   weak var collectionView: UICollectionView!
 
@@ -29,5 +20,18 @@ public class ColorGirdDataProvider: NSObject, ColorGridDataProviderProtocol {
 
   func fetch() {
     
+  }
+}
+
+// MARK: UICollectionViewDataSource
+extension ColorGirdDataProvider: UICollectionViewDataSource {
+
+  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    return UICollectionViewCell()
+  }
+  
+  
+  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 0
   }
 }

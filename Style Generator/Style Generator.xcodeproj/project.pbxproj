@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E226743B1E288A0C0075B08F /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226743A1E288A0C0075B08F /* ColorCell.swift */; };
-		E22674451E29F8CC0075B08F /* ColorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22674441E29F8CC0075B08F /* ColorObject.swift */; };
+		E22674451E29F8CC0075B08F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22674441E29F8CC0075B08F /* Color.swift */; };
 		E246DEB91E1A4984008B1272 /* MaterialColorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E246DEB81E1A4984008B1272 /* MaterialColorStruct.swift */; };
 		E24946C41E3356E500A2D47B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24946C21E3356E500A2D47B /* Realm.framework */; };
 		E24946C51E3356E500A2D47B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E24946C21E3356E500A2D47B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -26,7 +26,7 @@
 		E2D3CE0E1E00CE0F00C77F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2D3CE0D1E00CE0F00C77F10 /* Assets.xcassets */; };
 		E2D3CE111E00CE0F00C77F10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2D3CE0F1E00CE0F00C77F10 /* LaunchScreen.storyboard */; };
 		E2F4341B1E44C26C0024B52D /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F4341A1E44C26C0024B52D /* Realm.swift */; };
-		E2F4341F1E44C2F90024B52D /* ColorObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F4341E1E44C2F90024B52D /* ColorObjectTests.swift */; };
+		E2F4341F1E44C2F90024B52D /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F4341E1E44C2F90024B52D /* ColorTests.swift */; };
 		E2FA733C1E407B790010516C /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; };
 		E2FA733E1E407BD90010516C /* Toolbelt.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E28FF1611E174BBD00320D29 /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2FA73401E407C3D0010516C /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FA733F1E407C3D0010516C /* Accessibility.swift */; };
@@ -88,7 +88,7 @@
 
 /* Begin PBXFileReference section */
 		E226743A1E288A0C0075B08F /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
-		E22674441E29F8CC0075B08F /* ColorObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorObject.swift; sourceTree = "<group>"; };
+		E22674441E29F8CC0075B08F /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		E246DEB81E1A4984008B1272 /* MaterialColorStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialColorStruct.swift; sourceTree = "<group>"; };
 		E24946C21E3356E500A2D47B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		E24946C31E3356E500A2D47B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		E2D3CE221E00CE0F00C77F10 /* Style GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Style GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D3CE281E00CE0F00C77F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F4341A1E44C26C0024B52D /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
-		E2F4341E1E44C2F90024B52D /* ColorObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorObjectTests.swift; sourceTree = "<group>"; };
+		E2F4341E1E44C2F90024B52D /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		E2FA733F1E407C3D0010516C /* Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,7 +191,7 @@
 				E2D3CE061E00CE0F00C77F10 /* AppDelegate.swift */,
 				E2FA733F1E407C3D0010516C /* Accessibility.swift */,
 				E270FA1D1E45E0FF00958CB9 /* ColorGrid */,
-				E22674441E29F8CC0075B08F /* ColorObject.swift */,
+				E22674441E29F8CC0075B08F /* Color.swift */,
 				E2F4341A1E44C26C0024B52D /* Realm.swift */,
 				E226743A1E288A0C0075B08F /* ColorCell.swift */,
 				E246DEB81E1A4984008B1272 /* MaterialColorStruct.swift */,
@@ -208,7 +208,7 @@
 			children = (
 				E2D3CE1D1E00CE0F00C77F10 /* Info.plist */,
 				E2D2CFFA1E335AAF000CC274 /* ColorViewControllerTests.swift */,
-				E2F4341E1E44C2F90024B52D /* ColorObjectTests.swift */,
+				E2F4341E1E44C2F90024B52D /* ColorTests.swift */,
 			);
 			path = "Style GeneratorTests";
 			sourceTree = "<group>";
@@ -388,7 +388,7 @@
 				E2D3CE071E00CE0F00C77F10 /* AppDelegate.swift in Sources */,
 				E270FA211E45E18D00958CB9 /* ColorGridDataProviderProtocol.swift in Sources */,
 				E2FA73401E407C3D0010516C /* Accessibility.swift in Sources */,
-				E22674451E29F8CC0075B08F /* ColorObject.swift in Sources */,
+				E22674451E29F8CC0075B08F /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F4341F1E44C2F90024B52D /* ColorObjectTests.swift in Sources */,
+				E2F4341F1E44C2F90024B52D /* ColorTests.swift in Sources */,
 				E2D2CFFB1E335AAF000CC274 /* ColorViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
