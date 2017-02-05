@@ -10,6 +10,11 @@ struct Keys {
     static let hues = "hues"
   }
 }
+
+enum Hue: String {
+  case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700
+}
+
 class Color: Object {
   
   
@@ -70,7 +75,3 @@ extension Color {
 
 //TODO: decide where we'll be putting these as a general rule
 let insertionCompletedNotification = Notification.Name(rawValue:"InsertionCompletedNotification")
-
-enum Hue: String {
-  case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700
-}
