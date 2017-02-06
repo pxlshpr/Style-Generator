@@ -7,6 +7,8 @@ struct Keys {
     static let hex = "hex"
     static let name = "name"
     static let accents = "accents"
+    static let hue = "hue"
+    static let internalHue = "privateHue"
     static let hues = "hues"
   }
 }

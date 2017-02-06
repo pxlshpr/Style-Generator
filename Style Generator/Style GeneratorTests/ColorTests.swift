@@ -13,8 +13,6 @@ class ColorTests: XCTestCase {
     static let invalidHueString = "@$!$"
 
     static let name = "White"
-    static let accents = List<Color>()
-    static let hues = List<Color>()
   }
   
   override func setUp() {
@@ -47,18 +45,20 @@ class ColorTests: XCTestCase {
     XCTAssertEqual(color.name, Values.name)
     XCTAssertEqual(color.hue, Values.hue)
     
-    let colorFromDict = Color(value: [Keys.Color.hex: Values.validHex, Keys.Color.name: Values.name, "privateHue": Values.validHueString])
+    let colorFromDict = Color(value:
+      [Keys.Color.hex: Values.validHex,
+       Keys.Color.name: Values.name,
+       Keys.Color.internalHue: Values.validHueString])
     XCTAssertEqual(colorFromDict.hex, Values.validHex)
     XCTAssertEqual(colorFromDict.name, Values.name)
     XCTAssertEqual(colorFromDict.hue, Values.hue)
     
-    let colorFromArray = Color(value: [Values.validHex, Values.name, Values.validHueString, Values.accents, Values.hues])
+    let colorFromArray = Color(value: [Values.validHex, Values.name, Values.validHueString, List<Color>(), List<Color>()])
     XCTAssertEqual(colorFromArray.hex, Values.validHex)
     XCTAssertEqual(colorFromArray.name, Values.name)
     XCTAssertEqual(colorFromArray.hue, Values.hue)
-    //TODO: fix these
-//    XCTAssertEqual(colorFromArray.accents, Values.accents)
-//    XCTAssertEqual(colorFromArray.hues, Values.hues)
+    XCTAssertEqual(colorFromArray.accents.count, 0)
+    XCTAssertEqual(colorFromArray.hues.count, 0)
   }
 
   func _testColor_SetWithInvalidHex_CausesFatalError() {
