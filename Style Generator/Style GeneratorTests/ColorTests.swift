@@ -157,5 +157,11 @@ class ColorTests: XCTestCase {
     
     // We will add tests here as we encounter edge cases. For now, we've covered an extreme case of  testing for inequality and that's enough.
   }
+  
+  func testColor_CreatedWithValidHex_ShouldReturnTheExpectedBarStyle() {
+  }
+  
+  func testColor_CreatedWithValidHex_ShouldReturnTheExpectedUIColor() {
+  }
 }
 
