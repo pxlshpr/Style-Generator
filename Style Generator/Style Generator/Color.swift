@@ -20,13 +20,7 @@ enum Hue: String {
 class Color: Object {
   
   
-  private dynamic var privateHex: String? {
-    didSet {
-      if let isValid = hex?.isValidHexadecimal, !isValid {
-        fatalError("Invalid Hexadecimal")
-      }
-    }
-  }
+  private dynamic var privateHex: String?
   var hex: String? {
     get {
       return privateHex
