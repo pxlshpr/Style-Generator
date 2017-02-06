@@ -61,7 +61,7 @@ class ColorTests: XCTestCase {
     XCTAssertEqual(colorFromArray.hues.count, 0)
   }
 
-  func _testColor_SetWithInvalidHex_CausesFatalError() {
+  func testColor_SetWithInvalidHex_CausesFatalError() {
     let color = Color()
     color.hex = "@#@#"
     XCTAssertNil(color.hex)
