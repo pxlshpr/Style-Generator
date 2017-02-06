@@ -45,34 +45,12 @@ class ColorTests: XCTestCase {
     XCTAssertEqual(color.name, Values.name)
     XCTAssertEqual(color.hue, Values.hue)
     
-    let colorFromDict = Color(value:
-      [Keys.Color.hex: Values.validHex,
-       Keys.Color.name: Values.name,
-       Keys.Color.internalHue: Values.validHueString])
-    XCTAssertEqual(colorFromDict.hex, Values.validHex)
-    XCTAssertEqual(colorFromDict.name, Values.name)
-    XCTAssertEqual(colorFromDict.hue, Values.hue)
-    
-    let colorFromArray = Color(value: [Values.validHex, Values.name, Values.validHueString, List<Color>(), List<Color>()])
-    XCTAssertEqual(colorFromArray.hex, Values.validHex)
-    XCTAssertEqual(colorFromArray.name, Values.name)
-    XCTAssertEqual(colorFromArray.hue, Values.hue)
-    XCTAssertEqual(colorFromArray.accents.count, 0)
-    XCTAssertEqual(colorFromArray.hues.count, 0)
+    //Important: we won't be testing creating an object using an array or dictionary due to the complications with our workarounds (private variables) that allow property validation and storing enums
   }
 
-  func testColor_SetWithInvalidHex_CausesFatalError() {
+  func testColor_SetWithInvalidHex_SetsHexToBeNil() {
     let color = Color()
-    color.hex = "@#@#"
+    color.hex = Values.invalidHex
     XCTAssertNil(color.hex)
-
-
-    //TODO: how to we test that invalid values will break it?
-//    let colorFromDict = Color(value: ["hex": "@#@#", "name": "White"])
-//    XCTAssertNil(invalidColor.hex)
-    
-    let colorFromArray = Color(value: ["@#@#", "White", ""])
-    XCTAssertNil(colorFromArray.hex)
-  }
-  
+  }  
 }

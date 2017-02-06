@@ -20,10 +20,22 @@ enum Hue: String {
 class Color: Object {
   
   
-  dynamic var hex: String? {
+  private dynamic var privateHex: String? {
     didSet {
       if let isValid = hex?.isValidHexadecimal, !isValid {
         fatalError("Invalid Hexadecimal")
+      }
+    }
+  }
+  var hex: String? {
+    get {
+      return privateHex
+    }
+    set {
+      if let isValid = newValue?.isValidHexadecimal, isValid {
+        privateHex = newValue
+      } else {
+        privateHex = nil
       }
     }
   }
@@ -34,8 +46,14 @@ class Color: Object {
   //http://stackoverflow.com/a/33480806
   private dynamic var privateHue: String?
   var hue: Hue? {
-    get { return privateHue != nil ? Hue(rawValue: privateHue!) : nil }
-    set { if let unwrapped = newValue { privateHue = unwrapped.rawValue } }
+    get {
+      return privateHue != nil ? Hue(rawValue: privateHue!) : nil
+    }
+    set {
+      if let unwrapped = newValue {
+        privateHue = unwrapped.rawValue
+      }
+    }
   }
 
   let accents = List<Color>()
