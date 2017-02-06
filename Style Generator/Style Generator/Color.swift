@@ -14,11 +14,10 @@ struct Keys {
 }
 
 enum Hue: String {
-  case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700
+  case P50, P100, P200, P300, P400, P500, P600, P700, P800, P900, A100, A200, A400, A700, None
 }
 
 class Color: Object {
-  
   
   private dynamic var privateHex: String?
   var hex: String? {
@@ -56,6 +55,43 @@ class Color: Object {
   override static func primaryKey() -> String? {
     return Keys.Color.hex
   }
+  
+  //safer to use these
+  class func withHex(_ hex: String, name: String, hue: Hue, accents: [Color]?, hues: [Color]?) -> Color? {
+    let color = Color()
+    color.hex = hex
+    guard color.hex != nil else { return nil }
+    color.name = name
+    color.hue = hue
+    if let accents = accents { color.accents.append(objectsIn: accents) }
+    if let hues = hues { color.hues.append(objectsIn: hues) }
+    return color
+  }
+  
+  class func withHex(_ hex: String, name: String, hue: Hue) -> Color? {
+    return withHex(hex, name: name, hue: hue, accents: nil, hues: nil)
+  }
+
+  class func withHex(_ hex: String, name: String) -> Color? {
+    return withHex(hex, name: name, hue: .None, accents: nil, hues: nil)
+  }
+
+  override func isEqual(_ object: Any?) -> Bool {
+    guard let color = object as? Color else { return false }
+    return self == color
+  }
+}
+
+func ==(lhs: Color, rhs: Color) -> Bool {
+  guard lhs.hex == rhs.hex && lhs.name == rhs.name && lhs.hue == rhs.hue else { return false }
+  guard lhs.hues.count == rhs.hues.count && lhs.accents.count == rhs.accents.count else { return false }
+  for i in 0..<lhs.hues.count {
+    guard lhs.hues[i] == rhs.hues[i] else { return false }
+  }
+  for i in 0..<lhs.accents.count {
+    guard lhs.accents[i] == rhs.accents[i] else { return false }
+  }
+  return true
 }
 
 //MARK: Class Functions
