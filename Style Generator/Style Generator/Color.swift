@@ -17,7 +17,7 @@ extension UIColor {
     let componentColorB: CGFloat = components[2] * 114
     
     let brightness = componentColorR + componentColorG + componentColorB
-    return brightness >= 500 //try up to 700 too
+    return brightness >= 500 //try up to 700 too (tests should reveal this!)
   }
 }
 
@@ -79,7 +79,8 @@ class Color: Object {
   var barStyle: UIBarStyle? {
     guard let hex = hex else { return nil }
     //TODO use code to try figure out what UIBarStyle to use on this color
-    return UIBarStyle.black
+    guard let color = UIColor(hexString: hex) else { return nil }
+    return color.isLight() ? .default : .black
   }
   
   override static func primaryKey() -> String? {

@@ -1,5 +1,6 @@
 import XCTest
 import RealmSwift
+import Toolbelt
 @testable import Style_Generator
 
 class ColorTests: XCTestCase {
@@ -148,16 +149,22 @@ class ColorTests: XCTestCase {
   func testColor_CreatedWithValidHex_ShouldReturnTheExpectedBarStyle() {
     for i in 0..<Values.barStyleHexes.count {
       let hex = Values.barStyleHexes[i]
-      let color = Color.withHex(hex, name: "Color")
-      XCTAssertEqual(color.barStyle, Values.barStyleExpectedBarStyles[i])
+      if let color = Color.withHex(hex, name: "Color") {
+        XCTAssertEqual(color.barStyle, Values.barStyleExpectedBarStyles[i])
+      } else {
+        XCTFail("Couldn't create a simple color")
+      }
     }
   }
   
   func testColor_CreatedWithValidHex_ShouldReturnTheExpectedUIColor() {
     for i in 0..<Values.uiColorHexes.count {
       let hex = Values.uiColorHexes[i]
-      let color = Color.withHex(hex, name: "Color")
-      XCTAssertEqual(color.uiColor, Values.uiColorExpectedUIColors[i])
+      if let color = Color.withHex(hex, name: "Color") {
+        XCTAssertEqual(color.uiColor, Values.uiColorExpectedUIColors[i])
+      } else {
+        XCTFail("Couldn't create a simple color")
+      }
     }
   }
 }
@@ -177,10 +184,11 @@ extension ColorTests {
     static let hue1 = Color()
     static let hue2 = Color()
     
-    static let barStyleHexes: [String] = []
-    static let barStyleExpectedBarStyles: [UIBarStyle] = []
+    //TODO: add more cases here. maybe the extreme cases; with material colors and just some colors in general
+    static let barStyleHexes: [String] = ["FFFFFF", "000000"]
+    static let barStyleExpectedBarStyles: [UIBarStyle] = [.default, .black]
     
-    static let uiColorHexes: [String] = []
-    static let uiColorExpectedUIColors: [UIColor] = []
+    static let uiColorHexes: [String] = ["FFFFFF", "000000"]
+    static let uiColorExpectedUIColors: [UIColor] = [UIColor(hexString: "FFFFFF")!, UIColor(hexString: "000000")!]
   }
 }
