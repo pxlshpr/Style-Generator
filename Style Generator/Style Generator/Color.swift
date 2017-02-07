@@ -1,6 +1,7 @@
 import Foundation
 import RealmSwift
 import Toolbelt
+import UIKit
 
 struct Keys {
   struct Color {
@@ -52,6 +53,17 @@ class Color: Object {
   let accents = List<Color>()
   let hues = List<Color>()
 
+  var uiColor: UIColor? {
+    guard let hex = hex else { return nil }
+    return UIColor(hexString: hex)
+  }
+  
+  var barStyle: UIBarStyle? {
+    guard let hex = hex else { return nil }
+    //TODO use code to try figure out what UIBarStyle to use on this color
+    return UIBarStyle.black
+  }
+  
   override static func primaryKey() -> String? {
     return Keys.Color.hex
   }

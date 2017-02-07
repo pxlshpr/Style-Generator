@@ -4,20 +4,6 @@ import RealmSwift
 
 class ColorTests: XCTestCase {
   
-  struct Values {
-    static let validHex = "FFFFFF"
-    static let invalidHex = "@#$%"
-
-    static let hue = Hue.P50
-    static let name = "White"
-    
-    static let accent1 = Color()
-    static let accent2 = Color()
-    
-    static let hue1 = Color()
-    static let hue2 = Color()
-  }
-  
   override func setUp() {
     super.setUp()
   }
@@ -26,6 +12,7 @@ class ColorTests: XCTestCase {
     super.tearDown()
   }
   
+  //TODO: Create MARK:'s and tests for all CRUD operations relation to this model
   func testColor_HasCorrectPrimaryKey() {
     XCTAssertEqual(Color.primaryKey(), Keys.Color.hex)
   }
@@ -159,9 +146,41 @@ class ColorTests: XCTestCase {
   }
   
   func testColor_CreatedWithValidHex_ShouldReturnTheExpectedBarStyle() {
+    for i in 0..<Values.barStyleHexes.count {
+      let hex = Values.barStyleHexes[i]
+      let color = Color.withHex(hex, name: "Color")
+      XCTAssertEqual(color.barStyle, Values.barStyleExpectedBarStyles[i])
+    }
   }
   
   func testColor_CreatedWithValidHex_ShouldReturnTheExpectedUIColor() {
+    for i in 0..<Values.uiColorHexes.count {
+      let hex = Values.uiColorHexes[i]
+      let color = Color.withHex(hex, name: "Color")
+      XCTAssertEqual(color.uiColor, Values.uiColorExpectedUIColors[i])
+    }
   }
 }
 
+extension ColorTests {
+  
+  struct Values {
+    static let validHex = "FFFFFF"
+    static let invalidHex = "@#$%"
+    
+    static let hue = Hue.P50
+    static let name = "White"
+    
+    static let accent1 = Color()
+    static let accent2 = Color()
+    
+    static let hue1 = Color()
+    static let hue2 = Color()
+    
+    static let barStyleHexes: [String] = []
+    static let barStyleExpectedBarStyles: [UIBarStyle] = []
+    
+    static let uiColorHexes: [String] = []
+    static let uiColorExpectedUIColors: [UIColor] = []
+  }
+}
