@@ -5,6 +5,7 @@ import UIKit
 
 //TODO: Move this to Toolbelt
 //modified from: http://stackoverflow.com/a/29044899
+//which is originally derived from: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
 extension UIColor {
   func isLight() -> Bool {
     guard let components = self.cgColor.components else {
