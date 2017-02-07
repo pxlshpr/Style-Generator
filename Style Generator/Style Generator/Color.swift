@@ -3,10 +3,11 @@ import RealmSwift
 import Toolbelt
 import UIKit
 
-//TODO: Move this to Toolbelt
+//TODO: Move this to Toolbelt after we add it there with tests!
 //modified from: http://stackoverflow.com/a/29044899
 //which is originally derived from: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
 extension UIColor {
+  //TODO: try and make these variables
   func isLight() -> Bool {
     guard let components = self.cgColor.components else {
       return false
@@ -18,6 +19,10 @@ extension UIColor {
     
     let brightness = componentColorR + componentColorG + componentColorB
     return brightness >= 500 //try up to 700 too (tests should reveal this!)
+  }
+  
+  func barStyle() -> UIBarStyle {
+    return isLight() ? .default : .black
   }
 }
 
@@ -78,9 +83,8 @@ class Color: Object {
   
   var barStyle: UIBarStyle? {
     guard let hex = hex else { return nil }
-    //TODO use code to try figure out what UIBarStyle to use on this color
     guard let color = UIColor(hexString: hex) else { return nil }
-    return color.isLight() ? .default : .black
+    return color.barStyle()
   }
   
   override static func primaryKey() -> String? {
