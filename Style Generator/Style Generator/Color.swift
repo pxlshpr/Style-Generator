@@ -3,6 +3,23 @@ import RealmSwift
 import Toolbelt
 import UIKit
 
+//TODO: Move this to Toolbelt
+//modified from: http://stackoverflow.com/a/29044899
+extension UIColor {
+  func isLight() -> Bool {
+    guard let components = self.cgColor.components else {
+      return false
+    }
+    
+    let componentColorR: CGFloat = components[0] * 299
+    let componentColorG: CGFloat = components[1] * 587
+    let componentColorB: CGFloat = components[2] * 114
+    
+    let brightness = componentColorR + componentColorG + componentColorB
+    return brightness >= 500 //try up to 700 too
+  }
+}
+
 struct Keys {
   struct Color {
     static let hex = "hex"
