@@ -58,7 +58,8 @@ class ColorCell: UICollectionViewCell {
     if let color = self.color {
       label.text = color.name
     } else {
-      label.text = "Label"
+      //TODO: this doesn't work as intended as its not always set. Think of an alternative
+//      label.text = "Label"
     }
   }
   private func hideLabel() {

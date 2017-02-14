@@ -52,20 +52,29 @@ class ColorGridViewControllerUITests: XCTestCase {
     
     //assuming that assertApp_DefaultState() would work here since its in another test
     
-    let randomCell = cells.random
+    let randomIndex = (0..<cells.count).random
+    let randomCell = cells[randomIndex]
+    
+    var otherCells = [XCUIElement]()
+    for i in 0..<cells.count {
+      guard i != randomIndex else { continue }
+      otherCells.append(cells[i])
+    }
+    
     randomCell.tap()
     XCTAssertTrue(randomCell.isCellInSelectedState, "Tapped cell wasn't in selected state as expected")
-    for cell in cells {
-      guard cell != randomCell else { continue }
+    for cell in otherCells {
       print("asserting that \(cell.label) is deselected")
       cell.assertCellInDeselectedState()
 //      XCTAssertTrue(cell.isCellInDeselectedState, "Cell wasn't in deselected state as expected")
     }
     
-    //navigation bar right bar button is enabled
-    let navigationBar = app.navigationBars[ExpectedStrings.NavigationTitle.PrimaryDefault]
-    let nextButton = navigationBar.buttons[ExpectedStrings.BarButtonLabels.PrimaryNext]
-    XCTAssertFalse(nextButton.isEnabled, "Next button is incorrectly enabled initially")
+    //TODO: we need to properly determine the label of the navigation bar before proceeding!
+//    let label = randomCell.label.replacingOccurrences(of: Accessibility.SelectedTitlePrefix, with: "")
+//    //navigation bar right bar button is enabled
+//    let navigationBar = app.navigationBars[label]
+//    let nextButton = navigationBar.buttons[ExpectedStrings.BarButtonLabels.PrimaryNext]
+//    XCTAssertTrue(nextButton.isEnabled, "Next button is incorrectly enabled initially")
     
     //navigation bar title is cell's default label. Do the thingw here we select another cell (either the first or last one, and record our random cell's title, and then select the random cell again and now make sure that the navigation bar title matches it!)
     //XCTAssert...
@@ -327,6 +336,7 @@ extension XCUIElement {
 
 //TOOD: add this to toolbelt with tests
 extension Array {
+  //TODO: why is it that an element returned cannot be compared back with it inside the array again? or is it a problem with XCUIElement's equatable-ness?
   var random: Element {
     return self[(0..<self.count).random]
   }
