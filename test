@@ -2,6 +2,10 @@
 # ./test script
 #set -e # stop when a test fails
 
-#broken up into two steps following instructions here: http://stackoverflow.com/a/40790171
+#broken up into two steps to avoid a timeout with Travis
+#following instructions here: http://stackoverflow.com/a/40790171
+#----
 xcodebuild clean build build-for-testing -scheme "Style Generator" -project "Style Generator/Style Generator.xcodeproj" -destination "platform=iOS Simulator,name=iPhone 7,OS=10.1" 
+
 xcodebuild test-without-building -scheme "Style Generator" -project "Style Generator/Style Generator.xcodeproj" -destination "platform=iOS Simulator,name=iPhone 7,OS=10.1"
+#----
